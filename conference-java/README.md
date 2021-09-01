@@ -1,4 +1,4 @@
-# Fundamentals
+# Fundamentals Java
 
 Based on "Spring Framework: Spring Fundamentals", a Pluralsight course by Bryan Hansen.
 
