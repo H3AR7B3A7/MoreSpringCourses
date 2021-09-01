@@ -35,3 +35,35 @@ Based on "Spring Framework: Spring Fundamentals", a Pluralsight course by Bryan 
   - @Service
   - @Controller
   - ...
+
+## Bean Lifecycle
+
+- Instantiation
+- Populate Properties
+- BeanNameAware
+- BeanFactoryAware
+- Pre Initialization - BeanPostProcessors
+- InitializeBean
+- initMethod
+- Post Initialization - BeanPostProcessors
+
+## BeanAware Annotations
+
+- @PostConstruct
+- @PreDestroy
+
+```xml
+<dependency>
+    <groupId>javax.annotation</groupId>
+    <artifactId>javax.annotation-api</artifactId>
+    <version>1.3.2</version>
+</dependency>
+```
+
+## Factory Bean Configuration
+
+- Builds on initMethod concept
+- Factory Method Pattern
+- Legacy Code
+- Contract without Constructor
+- Static Methods
