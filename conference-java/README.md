@@ -67,3 +67,31 @@ Based on "Spring Framework: Spring Fundamentals", a Pluralsight course by Bryan 
 - Legacy Code
 - Contract without Constructor
 - Static Methods
+
+## SpEL
+
+Spring Expression Language is used for:
+- Manipulate Object Graph
+- Evaluate at Runtime
+- Configuration
+
+## Spring AOP Proxies
+
+Spring utilizes proxies.
+
+```java
+ProxyFactory factory = new ProxyFactory(new SimplePojo());
+factory.addInterface(Pojo.class);
+factory.addAvice(new RetryAdvice());
+factory.setExposeProxy(true);
+
+Pojo pojo = (Pojo) factory.getProxy();
+
+// This is a method call on the proxy
+pojo.foo();
+```
+
+## Bean Profiles
+
+- Adapt Environments
+- Runtime Configuration
