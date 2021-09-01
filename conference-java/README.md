@@ -22,7 +22,7 @@ Based on "Spring Framework: Spring Fundamentals", a Pluralsight course by Bryan 
 - GlobalSession
 
 ```java
-    @Scope(value = BeanDefinition.SCOPE_SINGLETON)
+@Scope(value = BeanDefinition.SCOPE_SINGLETON)
 ```
 
 ## Autowiring
