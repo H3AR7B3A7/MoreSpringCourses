@@ -2,10 +2,12 @@ package be.dog.d.steven.repository.impl;
 
 import be.dog.d.steven.model.Speaker;
 import be.dog.d.steven.repository.SpeakerRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository("speakerRepository")
 public class HibernateSpeakerRepositoryImpl implements SpeakerRepository {
     
     @Override
