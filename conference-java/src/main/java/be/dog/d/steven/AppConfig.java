@@ -1,7 +1,11 @@
 package be.dog.d.steven;
 
+import be.dog.d.steven.util.CalendarFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Calendar;
 
 @Configuration
 @ComponentScan({"be.dog.d.steven"})
@@ -24,4 +28,16 @@ public class AppConfig {
         return new HibernateSpeakerRepositoryImpl();
     }
     */
+    
+    @Bean(name = "cal")
+    public CalendarFactory calFactory() {
+        CalendarFactory factory = new CalendarFactory();
+        factory.addDays(2);
+        return factory;
+    }
+    
+    @Bean
+    public Calendar cal() {
+        return calFactory().getObject();
+    }
 }
