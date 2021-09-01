@@ -95,3 +95,9 @@ pojo.foo();
 
 - Adapt Environments
 - Runtime Configuration
+
+```java
+@Profile("dev")
+```
+VMOptions:
+-Dspring.profiles.active=dev
