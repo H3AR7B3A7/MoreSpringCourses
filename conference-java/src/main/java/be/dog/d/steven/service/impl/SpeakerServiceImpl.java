@@ -4,12 +4,14 @@ import be.dog.d.steven.model.Speaker;
 import be.dog.d.steven.repository.SpeakerRepository;
 import be.dog.d.steven.service.SpeakerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service("speakerService")
+@Profile("dev")
 public class SpeakerServiceImpl implements SpeakerService {
     
     private SpeakerRepository repo;

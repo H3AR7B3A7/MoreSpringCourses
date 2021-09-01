@@ -4,6 +4,7 @@ import be.dog.d.steven.model.Speaker;
 import be.dog.d.steven.repository.SpeakerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.Calendar;
 import java.util.List;
 
 @Repository("speakerRepository")
+@Profile("dev")
 public class HibernateSpeakerRepositoryImpl implements SpeakerRepository {
     
     @Autowired
