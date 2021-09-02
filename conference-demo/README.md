@@ -8,3 +8,32 @@
 ## Postgres DB Setup
 
 We can find more information [here](https://github.com/dlbunker/ps-first-spring-boot-app/tree/master/database/postgresql).
+
+## Configuration
+
+- External sources
+  - Command line parameters
+  - JNDI
+  - OS environment variables
+- Internal sources
+  - Servlet parameters
+  - Property files
+  - Java configuration
+
+Order of precedence:
+1. Command line parameters
+2. SPRING_APPLICATION_JSON args
+3. Servlet Parameters
+4. JNDI
+5. Java System Properties
+6. OS environment variables
+7. Profile properties
+8. Application properties
+9. @PropertySource annotations
+10. Default properties
+
+*We should pick two sources. One will set the defaults, and one to overwrite the default to keep configuration in one of 2 places.*
+
+## Common Application Properties
+
+We can find common Spring properties [here](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html).
