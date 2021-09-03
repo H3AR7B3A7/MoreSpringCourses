@@ -34,6 +34,11 @@ Order of precedence:
 
 *We should pick two sources. One will set the defaults, and one to overwrite the default to keep configuration in one of 2 places.*
 
+## Run Maven with Environment Variables
+
+Since Maven is not aware of environment variables, we need to provide them in the command line.
+> maven -Dname=value clean install
+
 ## Common Application Properties
 
 We can find common Spring properties [here](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html).
