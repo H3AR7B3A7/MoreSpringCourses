@@ -118,5 +118,34 @@ The parent **pom.xml** holds pre-configured versions for a lot of dependencies, 
 Insights:
 - Start application with --debug switch
 - Add a simple property to application.properties
+
+  ```properties
+  logging.level.org.springframework=DEBUG
+  ```
+
 - Use the Spring Boot Actuator
+
+## Annotations
+
+The **@SpringBootApplication** annotation:
+- @SpringBootConfiguration
+
+  Replaces @Configuration and annotates a class af configuration
+
+- @EnableAutoConfiguration
+
+  Tells Spring Boot to configure beans
+
+- @ComponentScan
+  
+  Tells Spring Boot to scan current package and subpackages
+
+## Properties
+
+[Common Application Properties](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html)
+
+Different properties for multiple Spring Boot Profiles:
+```
+applications-{profile}.properties
+```
 
