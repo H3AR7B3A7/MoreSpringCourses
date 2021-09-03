@@ -167,3 +167,31 @@ applications-{profile}.properties
 - **Hibernate** (Persistence Provider, Springs implementation for JPA)
 
   Provides repository support for the JPA
+
+## MVC
+
+- **Model**
+
+  Representation of data in te system
+
+- **View**
+
+  Responsible for displaying data
+
+- **Controller**
+
+  Directing incoming user requests
+
+## Thymeleaf
+
+- Fragments
+- Repeatable chunks of code
+- Components reused across pages
+
+## Spring Boot Maven Plugin
+
+- Repackages our JAR / WAR files to be executed
+- Runs Spring Boot Application
+- Provides built)in dependency resolver
+- Manages lifecycle of Spring Boot Application
+
