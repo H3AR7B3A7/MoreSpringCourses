@@ -23,7 +23,7 @@ Spring Boot requires only one dependency to get all the **basics** for web appli
 </dependency>
 ```
 
-Including:
+Includes:
 - Spring MVC
 - REST
 - Tomcat
@@ -38,7 +38,7 @@ Spring boot will add most of the libraries needed for **testing** using also jus
   <scope>test</scope>
 </dependency>
 ```
-Including:
+Includes:
 - JUnit
 - Mockito
 - Hamcrest
@@ -53,6 +53,10 @@ Another dependency will add everything required for Spring Data JPA with Hiberna
   <artifactId>spring-boot-starter-data-jpa</artifactId>
 </dependency>
 ```
+Includes:
+- Hibernate
+- Spring Data JPA
+- Spring ORM
 
 ## Spring Boot CLI
 
@@ -149,3 +153,17 @@ Different properties for multiple Spring Boot Profiles:
 applications-{profile}.properties
 ```
 
+## ORM with JPA
+
+- Persistence Data Store
+- Java Database Connectivity (**JDBC**)
+
+  Connects to DB and executes queries
+
+- Java Persistence API (**JPA**)
+
+  Abstraction that makes it easy to map Java objects to relational DB (Doesn't 'DO' anything)
+
+- **Hibernate** (Persistence Provider, Springs implementation for JPA)
+
+  Provides repository support for the JPA
