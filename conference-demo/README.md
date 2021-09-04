@@ -42,3 +42,31 @@ Since Maven is not aware of environment variables, we need to provide them in th
 ## Common Application Properties
 
 We can find common Spring properties [here](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html).
+
+## Custom Auto Configuration
+
+Example:
+```java
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class MyAutoConfiguration {
+  @Bean
+  public someObject myMethod(){
+    // ...
+  }
+}
+```
+
+Declaration in resources/META-INF/spring.factories to register autoconfiguration:
+
+*org.springframework.boot.autoconfiguration.EnableAutoConfiguration=\com.mypackage.MyAutoConfiguration*
+
+**Annotations**:
+- @ConditionalOnClass
+- @ConditionalOnMissingClass
+- @ConditionalOnBean
+- @ConditionalOnMissingBean
+- @ConditionalOnProperty
+- @ConditionalOnResource
