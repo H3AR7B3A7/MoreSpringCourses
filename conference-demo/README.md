@@ -1,4 +1,4 @@
-[![Uptime Robot status](https://img.shields.io/uptimerobot/status/m789114632-ce19a7f8f8fff62257e0b936?label=Example%20Django%20Project&style=for-the-badge)](https://conf-spring.herokuapp.com/)
+[![Uptime Robot status](https://img.shields.io/uptimerobot/status/m789114632-ce19a7f8f8fff62257e0b936?label=Conference-CRUD&style=for-the-badge)](https://conf-spring.herokuapp.com/swagger-ui.html)
 
 # Spring Framework:
 ## Creating Your First Spring Boot Application
