@@ -160,3 +160,32 @@ Considerations to make with using cloud offering:
 Check the result:
 - [Home](https://conf-spring.herokuapp.com/)
 - [Swagger](https://conf-spring.herokuapp.com/swagger-ui.html)
+
+## WAR Deployment
+
+To deploy the application as a war file, we change the **pom.xml**:
+
+```xml
+...
+
+<description>Blah blah</description>
+<packaging>war</packaging>
+
+...
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+    <scope>provided</scope>
+</dependency>
+
+...
+```
+
+Copy the war to the *webapps* folder in an Apache Tomcat Container.
+
+*JNDI is useful to look into for setting environment variables.*
