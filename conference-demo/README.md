@@ -153,9 +153,8 @@ Considerations to make with using cloud offering:
 
   *Make sure to use the actual configuration provided by Heroku's datasource in resources tab.*
 
-- Connect to the db using PGAdmin4 or any db manager and setup the database / data
+- Connect to the db using PGAdmin4 or any db manager and set up the database / data
 
 Check the result:
-- [Here](https://conf-spring.herokuapp.com/)
-- [Here](https://conf-spring.herokuapp.com/api/v1/sessions)
-- [Here](https://conf-spring.herokuapp.com/api/v1/speakers)
+- [Home](https://conf-spring.herokuapp.com/)
+- [Swagger](https://conf-spring.herokuapp.com/swagger-ui.html)
