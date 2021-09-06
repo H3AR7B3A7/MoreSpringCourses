@@ -1,0 +1,17 @@
+type Application {
+  id: ID!
+  name: String!
+  owner: String!
+  description: String!
+}
+
+type Query {
+  findAllApplications: [Application]!
+  countApplications: Long!
+}
+
+type Mutation {
+  newApplication(name: String!, owner: String!, description: String!) : Application!
+  deleteApplication(id:ID!) : Boolean
+  updateApplicationOwner(newOwner: String!, id:ID!) : Application!
+}
