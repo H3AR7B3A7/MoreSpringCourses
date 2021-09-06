@@ -38,3 +38,30 @@ ResponseStatusException:
 A tool to call api's from command line:
 
 > curl http://localhost:8080/tza/applications
+
+## Spring Boot Actuator
+
+- Health checks and auditing
+- Metrics and HTTP tracing
+- Exposes HTTP or JMX endpoints
+
+Dependency:
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+
+http://localhost:8080/actuator
+
+We can configure the application to see more endpoints:
+
+```properties
+management.endpoints.web.exposure.include=info,health,metrics,loggers,beans,mappings
+management.endpoint.health.show-details=always
+```
+
+We can create custom endpoints:
+- Create a component class
+- Implement HealthIndicator

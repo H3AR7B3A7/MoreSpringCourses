@@ -2,7 +2,7 @@
 
 ## GraphQL
 
-*GraphQL offers greater flexibility in the response returned than REST.*
+*[GraphQL](https://graphql.org/) offers greater flexibility in the response returned than REST.*
 
 - Allows client to specify the exact data needed
 - Aggregation of data from multiple sources

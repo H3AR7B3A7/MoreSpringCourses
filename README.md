@@ -7,3 +7,5 @@
   - [Conference Demo](conference-demo/README.md)
 - Spring Boot Fundamentals, a Pluralsight course by Kesha Williams
   - [TrackZilla App](track-zilla/README.md)
+  - [TrackZilla REST Service](track-zilla-REST/README.md)
+  - [TrackZilla GraphQL Service](track-zilla-GraphQL/README.md)
