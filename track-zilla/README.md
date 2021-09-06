@@ -1,5 +1,6 @@
 # Spring Boot Fundamentals
 
+Overview:
 - Features of Spring Boot
   - Spring Boot starters
   - Auto configuration
@@ -7,10 +8,6 @@
   - Spring Initializr
 - Data access
 - Spring MVC
-- REST API development
-- GraphQL servers
-- Spring Boot Actuator
-- Testing
 
 ## Starter Dependency
 
@@ -192,6 +189,11 @@ applications-{profile}.properties
 
 - Repackages our JAR / WAR files to be executed
 - Runs Spring Boot Application
-- Provides built)in dependency resolver
+- Provides built-in dependency resolver
 - Manages lifecycle of Spring Boot Application
 
+## Packaging & Deployment
+
+Options:
+- Packaged as a traditional web application in a WAR file
+- Standalone application, packaged in executable JAR file
