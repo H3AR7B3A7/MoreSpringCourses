@@ -29,9 +29,8 @@ public class XmlConfiguration {
     Order order3;
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-                XmlConfiguration.class);
-        try {
+        try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+                XmlConfiguration.class)) {
             XmlConfiguration xmlConfiguration = (XmlConfiguration) context.getBean("xmlConfiguration");
             System.out.println("Customer Name: " + xmlConfiguration.getUser().getName());
             System.out.println("Age: " + xmlConfiguration.getUser().getAge());
@@ -40,21 +39,20 @@ public class XmlConfiguration {
             System.out.println("Discount: " + xmlConfiguration.getOrder2().getDiscount());
             System.out.println("Days to deliver: " + xmlConfiguration.getOrder2().getDaysToDeliver());
             System.out.println("Formatted Amount: " + xmlConfiguration.getOrder2().getFormattedAmount());
-            System.out.println("Shipping Locations: " );
-            for(City city : xmlConfiguration.getOrder2().getShippingLocations()) {
+            System.out.println("Shipping Locations: ");
+            for (City city : xmlConfiguration.getOrder2().getShippingLocations()) {
                 System.out.println(city.getName());
             }
 
-            System.out.println("Western Shipping Locations: " );
-            for(Iterator i = xmlConfiguration.getOrder2().getWesternShippingLocations().values().iterator(); i.hasNext();) {
-                List<City> cities = (List<City>)i.next();
-                for(City city : cities) {
+            System.out.println("Western Shipping Locations: ");
+            for (List<City> cities : xmlConfiguration.getOrder2().getWesternShippingLocations().values()) {
+                for (City city : cities) {
                     System.out.println(city.getName());
                 }
             }
 
-            System.out.println("Non Capital Shipping Locations: " );
-            for(City city : xmlConfiguration.getOrder3().getNonCapitalShippingLocations()) {
+            System.out.println("Non Capital Shipping Locations: ");
+            for (City city : xmlConfiguration.getOrder3().getNonCapitalShippingLocations()) {
                 System.out.println(city.getName());
             }
 
@@ -62,8 +60,6 @@ public class XmlConfiguration {
 
             System.out.println("Order Summary " + xmlConfiguration.getOrder3().getOrderSummary());
 
-        } finally {
-            context.close();
         }
     }
 
