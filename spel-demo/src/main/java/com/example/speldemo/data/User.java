@@ -1,5 +1,6 @@
 package com.example.speldemo.data;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -14,10 +15,15 @@ public class User {
     private String language;
     private String timeZone;
 
+    @Autowired // No need to autowire when there is no default constructor
     public User(@Value("#{systemProperties['user.country']}")String country,
                 @Value("#{systemProperties['user.language']}")String language) {
         this.country = country;
         this.language = language;
+    }
+
+    public User() {
+        // Default constructor only for AppExpressionParser
     }
 
     public String getName() {
