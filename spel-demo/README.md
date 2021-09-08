@@ -7,6 +7,13 @@ This makes it possible to perform dynamic bean wiring in applications.
 - Evaluated at runtime
 - Inject beans/values in other beans
 
+## Uses
+
+SpEL is generally used to:
+- Dependency inject existing bean into another object
+- Dependency inject a bean based on environment condition
+- Access and manipulate object graphs at runtime
+
 ## Syntax
 
 ```
@@ -78,3 +85,12 @@ This makes it possible to perform dynamic bean wiring in applications.
 *The latter 2 allow us to make the application behave conditionally using key/value pairs set at runtime.*
 
 We can find more examples [here](https://www.baeldung.com/spring-expression-language).
+
+## Annotation: @Value
+
+Used to specify a default value, which can be expressed using SpEL.
+
+Used in:
+- Fields
+- Methods
+- Constructor params
