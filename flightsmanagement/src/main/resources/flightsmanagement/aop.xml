@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+  <bean id="jim" class ="com.pluralsight.springaop.flightsmanagement.domain.Passenger">
+      <property name="name" value="Jim"/>
+      <property name="country" value="US" />
+  </bean>
+
+  <bean id="jack" class ="com.pluralsight.springaop.flightsmanagement.domain.Passenger">
+      <property name="name" value="Jack"/>
+      <property name="country" value="UK" />
+  </bean>
+  
+  <bean id="jill" class ="com.pluralsight.springaop.flightsmanagement.domain.Passenger">
+      <property name="name" value="Jill"/>
+      <property name="country" value="AU" />
+  </bean>
+  
+  <bean id="flight" class= "com.pluralsight.springaop.flightsmanagement.domain.Flight">
+       <property name="id" value="AA1234"/>
+       <property name="company" value="ABC Flights"/>
+       <property name="passengers">
+          <list>
+              <ref bean="jim"/>
+              <ref bean="jack"/>
+              <ref bean="jill"/>
+          </list>
+       </property>
+  </bean>
+
+  <bean id="ticket" class= "com.pluralsight.springaop.flightsmanagement.domain.Ticket">
+       <property name="passenger" ref="jim"/>
+       <property name="number" value="1234567890"/>
+  </bean>
+
+</beans>
