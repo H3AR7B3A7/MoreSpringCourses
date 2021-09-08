@@ -14,3 +14,6 @@
 - **Spring Expression Language (SpEL)**, a Pluralsight course by Buddhini Samarakkody
   - [Java SpEL](spel-demo/README.md)
   - [XML SpEL](spel-demo-xml/README.md)
+- **Aspect Oriented Programming with Spring AOP**, a Pluralsight course by Catalin Tudose
+  - [AOP Examples](aop-examples/README.md)
+  - [Flight Management Demo](flightsmanagement/README.md)
