@@ -2,7 +2,20 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
     <bean id="passengerDao" class="com.pluralsight.springaop.example1.PassengerDaoImpl"/>
+    <bean id="loggingAspect" class="com.pluralsight.springaop.example1.LoggingAspect"/>
+    
+    <aop:config>
+        <aop:aspect id="loggingAspect" ref="loggingAspect">
+            <aop:pointcut id="passengerMethod" expression="execution(* com.pluralsight.springaop.example1.*.*(..))"/>
+            <aop:before pointcut-ref="passengerMethod" method="before"/>
+            <aop:after pointcut-ref="passengerMethod" method="after"/>
+        </aop:aspect>
+    </aop:config>
 </beans>
