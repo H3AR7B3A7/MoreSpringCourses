@@ -33,3 +33,16 @@ Aspect Oriented Programming is used to separate business logic from cross-cuttin
   - JDK Dynamic Proxy: Standard mechanism of proxy creation
   - CGLib: Code generation library proxy
 - Weaving: The operation of program transformation that applies the aspect to the target object
+
+## Dependencies
+
+```xml
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-aop</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-aspects</artifactId>
+</dependency>
+```
