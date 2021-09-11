@@ -8,7 +8,7 @@ import java.util.Map;
 @Service("passengerDao")
 public class PassengerDaoImpl implements PassengerDao {
 	
-	private static Map<Integer, Passenger> passengersMap = new HashMap<>();
+	private static final Map<Integer, Passenger> passengersMap = new HashMap<>();
 	
 	public Passenger getPassenger(int id) {
 		if (null != passengersMap.get(id)) {
