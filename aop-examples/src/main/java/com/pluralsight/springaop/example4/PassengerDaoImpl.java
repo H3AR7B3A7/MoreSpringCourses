@@ -7,6 +7,7 @@ public class PassengerDaoImpl implements PassengerDao {
 	
 	private static Map<Integer, Passenger> passengersMap = new HashMap<>();
 	
+	@Log
 	public Passenger getPassenger(int id) {
 		if (null != passengersMap.get(id)) {
 			return passengersMap.get(id);
