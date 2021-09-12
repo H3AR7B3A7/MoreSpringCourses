@@ -1,7 +1,6 @@
 package com.pluralsight.springaop.flightsmanagement.domain;
 
 public class Passenger {
-	
 	private String name;
 	private String country;
 	
@@ -28,5 +27,4 @@ public class Passenger {
 	public String toString(){
 		return "Passenger " + name + " from " + country;
 	}
-
 }

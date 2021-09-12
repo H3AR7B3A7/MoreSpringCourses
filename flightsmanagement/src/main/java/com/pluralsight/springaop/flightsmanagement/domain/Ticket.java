@@ -1,7 +1,6 @@
 package com.pluralsight.springaop.flightsmanagement.domain;
 
 public class Ticket {
-
 	private String number;
 	private Passenger passenger;
 
@@ -29,5 +28,4 @@ public class Ticket {
 	public String toString() {
 		return "Ticket number: " + number;
 	}
-
 }

@@ -3,7 +3,6 @@ package com.pluralsight.springaop.flightsmanagement.domain;
 import java.util.List;
 
 public class Flight {
-	
 	private String id;
 	private String company;
 	private List<Passenger> passengers;
@@ -38,5 +37,4 @@ public class Flight {
 		}
 		
 	}
-
 }
