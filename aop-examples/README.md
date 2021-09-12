@@ -46,3 +46,19 @@ Aspect Oriented Programming is used to separate business logic from cross-cuttin
     <artifactId>spring-aspects</artifactId>
 </dependency>
 ```
+
+## AspectJ PointCut Language
+
+We can find more examples [here](https://www.baeldung.com/spring-aop-pointcut-tutorial).
+
+## Proxy Creation
+
+When an interface of the object is present:
+- Spring AOP will use the JDK Dynamic Proxy mechanism
+
+  Both the original class and the proxy will have the interface implemented.
+
+When no interface is present:
+- Spring AOP will the CGLib mechanism
+
+  The proxy class will inherit from the original class. The original class can't be final!
