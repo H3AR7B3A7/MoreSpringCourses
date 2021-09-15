@@ -1,5 +1,6 @@
 package com.pluralsight.springaop.flightsmanagement.domain;
 
+import com.pluralsight.springaop.flightsmanagement.dao.PassengerDao;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class FlightsManagement {
@@ -22,6 +23,10 @@ public class FlightsManagement {
 		
 		Ticket ticket = (Ticket) context.getBean("ticket");
 		ticket.setNumber("0987654321");
+
+		PassengerDao passengerDao = (PassengerDao) context.getBean("passengerDaoImpl");
+		passengerDao.getPassenger(1);
+		passengerDao.getPassenger(1);
 
 		context.close();
 	}
