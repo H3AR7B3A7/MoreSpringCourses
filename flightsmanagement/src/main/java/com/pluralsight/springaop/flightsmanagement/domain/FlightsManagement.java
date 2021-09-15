@@ -27,6 +27,12 @@ public class FlightsManagement {
 		PassengerDao passengerDao = (PassengerDao) context.getBean("passengerDaoImpl");
 		passengerDao.getPassenger(1);
 		passengerDao.getPassenger(1);
+		
+		Passenger mike = new Passenger();
+		mike.setName("Mike");
+		mike.setCountry("BOGUS");
+		
+		passengerDao.insert(mike);
 
 		context.close();
 	}

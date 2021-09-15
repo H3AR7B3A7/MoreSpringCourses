@@ -2,11 +2,14 @@ package com.pluralsight.springaop.flightsmanagement.dao.impl;
 
 import com.pluralsight.springaop.flightsmanagement.dao.PassengerDao;
 import com.pluralsight.springaop.flightsmanagement.domain.Passenger;
+import com.pluralsight.springaop.flightsmanagement.exceptions.CountryDoesNotExistException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class PassengerDaoImpl implements PassengerDao {
@@ -42,5 +45,14 @@ public class PassengerDaoImpl implements PassengerDao {
         }
         Passenger passenger = getById(id);
         return passenger;
+    }
+
+    @Override
+    public void insert(Passenger passenger) {
+        if (!Arrays.asList(Locale.getISOCountries()).contains(passenger.getCountry())) {
+            throw new CountryDoesNotExistException(passenger.getCountry());
+        }
+        String sql = "INSERT INTO PASSENGER (NAME, COUNTRY) VALUES(?, ?)";
+        jdbcTemplate.update(sql, new Object[] { passenger.getName(), passenger.getCountry() });
     }
 }

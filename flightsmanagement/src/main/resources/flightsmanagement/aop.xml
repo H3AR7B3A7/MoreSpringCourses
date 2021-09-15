@@ -65,4 +65,5 @@
     <bean name="loggingAspect1" class="com.pluralsight.springaop.flightsmanagement.aspects.LoggingAspect1"/>
     <bean name="loggingAspect2" class="com.pluralsight.springaop.flightsmanagement.aspects.LoggingAspect2"/>
     <bean name="cachingAspect" class="com.pluralsight.springaop.flightsmanagement.aspects.CachingAspect"/>
+    <bean name="countryDoesNotExistAspect" class="com.pluralsight.springaop.flightsmanagement.aspects.CountryDoesNotExistAspect"/>
 </beans>
