@@ -17,3 +17,5 @@
 - **Aspect Oriented Programming with Spring AOP**, a Pluralsight course by Catalin Tudose
   - [AOP Examples](aop-examples/README.md)
   - [Flight Management Demo](flightsmanagement/README.md)
+  - [Introductions XML](flightsmanagement-xml/README.md)
+  - [Introductions Java](flightsmanagement-java/README.md)
