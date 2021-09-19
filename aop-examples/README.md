@@ -25,7 +25,7 @@ Aspect Oriented Programming is used to separate business logic from cross-cuttin
 - @AfterReturning
 - @AfterThrowing
 
-## AOP Terms
+## AOP Vocabulary
 
 - Target object: the object receiving advice by one or more aspects
 - Introduction: Introduces additional fields or methods for a given class (additional interfaces)

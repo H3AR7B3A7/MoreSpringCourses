@@ -1,5 +1,7 @@
 # Some Spring Courses
 
+## Core
+
 - **Spring Fundamentals**, a Pluralsight course by Bryan Hansen
   - [Java Config](conference-java/README.md)
   - [XML Config](conference-xml/README.md)
@@ -19,3 +21,8 @@
   - [Flight Management Demo](flightsmanagement/README.md)
   - [Introductions XML](flightsmanagement-xml/README.md)
   - [Introductions Java](flightsmanagement-java/README.md)
+
+## MVC
+
+- **Spring MVC Fundamentals**, a Pluralsight course by Bryan Hansen
+  - [Conference App](conference-app/README.md)
