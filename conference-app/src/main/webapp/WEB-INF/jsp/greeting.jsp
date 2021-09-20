@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Greeting</title>
+    <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
 <h1>${message}</h1>

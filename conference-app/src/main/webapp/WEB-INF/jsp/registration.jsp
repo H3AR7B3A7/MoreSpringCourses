@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Registration</title>
+    <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
 <h1>Registration</h1>
