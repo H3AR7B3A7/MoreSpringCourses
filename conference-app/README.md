@@ -47,3 +47,10 @@ Because of the @Component scan the application will pick up on our controllers a
 
 ![DispatcherServlet](dispatcher-servlet.png)
 ![DispatcherServlet](dispatcher-servlet2.png)
+
+## Interceptors
+
+- Logging
+- Security
+- I18N
+- Performance Monitoring
