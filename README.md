@@ -25,4 +25,5 @@
 ## MVC
 
 - **Spring MVC Fundamentals**, a Pluralsight course by Bryan Hansen
-  - [Conference App](conference-app/README.md)
+  - [Conference JSP](conference-app/README.md)
+  - [Conference Thymeleaf](conference-app-thymeleaf/README.md)
