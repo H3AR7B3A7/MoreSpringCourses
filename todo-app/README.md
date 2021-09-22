@@ -63,7 +63,7 @@ management.endpoint.<NAME>.enabled=false
 We can however change this default behaviour:
 
 ```properties
-management.endpoint.enabled-by-default=false
+management.endpoints.enabled-by-default=false
 ```
 
 This way we only have to enable what we want to be enabled if we only want a few endpoints.
