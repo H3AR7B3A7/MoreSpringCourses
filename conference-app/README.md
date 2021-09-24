@@ -1,5 +1,9 @@
 # Spring MVC
 
+Examples:
+- [Greeting](http://localhost:8080/conference/greeting)
+- [Registration](http://localhost:8080/conference/registration)
+
 ## Vocabulary
 
 - SPA: Single Page Application
