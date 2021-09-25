@@ -27,3 +27,5 @@
 - **Spring MVC Fundamentals**, a Pluralsight course by Bryan Hansen
   - [Conference JSP](conference-app/README.md)
   - [Conference Thymeleaf](conference-app-thymeleaf/README.md)
+- **Documenting Spring Data Rest APIs with Swagger and Springfox**, a Pluralsight course by Craig Golightly
+  - [Swagger Demo](swagger-demo/README.md)
