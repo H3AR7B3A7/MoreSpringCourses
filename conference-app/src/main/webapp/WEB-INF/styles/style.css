@@ -1,3 +1,16 @@
 body {
     background-color: green;
 }
+
+.error {
+    color: #ff0000;
+}
+
+.errorblock {
+    color: #000;
+    background-color: #ffaaaa;
+    border: 1px solid #ff0000;
+    padding: 8px;
+    margin: 16px;
+    border-radius: 5px;
+}
