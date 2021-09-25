@@ -58,3 +58,13 @@ Because of the @Component scan the application will pick up on our controllers a
 - Security
 - I18N
 - Performance Monitoring
+
+## JSR Bean Validation
+
+Dependency:
+```xml
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+</dependency>
+```
