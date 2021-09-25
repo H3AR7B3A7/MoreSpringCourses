@@ -1,5 +1,6 @@
 package be.dog.d.steven.employee;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import org.hibernate.Hibernate;
 
@@ -16,9 +17,11 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long id;
-
+    @ApiModelProperty("First and last name")
     public String name;
+    @NotNull
     public String title;
+    @ApiModelProperty(value = "Description about department", required = true)
     @NotNull
     public String department;
 

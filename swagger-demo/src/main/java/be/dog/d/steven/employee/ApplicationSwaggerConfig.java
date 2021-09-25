@@ -19,19 +19,42 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class ApplicationSwaggerConfig {
 
     @Bean
-    public Docket employeeApi() {
+    public Docket employeeApi1() {
         return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("employee-api-1")
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
+                .paths(PathSelectors.ant("/employeev1/**"))
                 .build()
-                .apiInfo(getApiInfo());
+                .apiInfo(getApiInfo("v1"));
+    }
+
+    @Bean
+    public Docket employeeApi2() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("employee-api-2")
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.ant("/employeev2/**"))
+                .build()
+                .apiInfo(getApiInfo("v2"));
     }
     
-    private ApiInfo getApiInfo() {
+    @Bean
+    public Docket employeeApi3() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("employee-api-3")
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.ant("/employeev3/**"))
+                .build()
+                .apiInfo(getApiInfo("v3"));
+    }
+    
+    private ApiInfo getApiInfo(String version) {
         return new ApiInfoBuilder()
                 .title("Employee API")
-                .version("1.0")
+                .version(version)
                 .description("API for managing employees.")
                 .contact(new Contact("Steven D'Hondt", "https://github.com/H3AR7B3A7", "steven.d.hondt.sdh@gmail.com"))
                 .license("Apache License Version 2.0")
