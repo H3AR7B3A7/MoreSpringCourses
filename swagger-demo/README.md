@@ -66,3 +66,15 @@ public class ApplicationSwaggerConfig {
   }
 }
 ```
+
+## Annotations
+
+@ApiEntityProperty:
+- Description
+- Required
+
+@ApiOperation:
+- Value
+- Notes
+
+JSR-303 Annotations Support shows required for @NotNull annotations etc...
