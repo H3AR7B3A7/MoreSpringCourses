@@ -68,3 +68,12 @@ Dependency:
     <artifactId>hibernate-validator</artifactId>
 </dependency>
 ```
+
+## Spring MVC with Client-side JavaScript Applications
+
+@RestController: The heart of rest-services
+
+Examples:
+- [Default user](http://localhost:8080/conference/user)
+- [Dan](http://localhost:8080/conference/user?firstname=Dan&lastname=Brown&age=25)
+- [jQuery](http://localhost:8080/conference/user.html)
