@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @RestController
 public class UserController {
     
@@ -26,5 +29,10 @@ public class UserController {
     public User postUser(User user) {
         System.out.println("User firstname:" + user.getFirstname());
         return user;
+    }
+    
+    @GetMapping("/test")
+    public void test(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/conference/user");
     }
 }
