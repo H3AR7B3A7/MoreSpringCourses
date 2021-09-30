@@ -4,12 +4,16 @@ Aspect Oriented Programming is used to separate business logic from cross-cuttin
 
 ## Common Use Cases
 
-- Logging
+- Logging & Tracing
 - User right check
+- Transaction Management
+- Security
 - Translations
 - Exception handling
 - Caching
 - Tweaking a legacy application
+- Performance Monitoring
+- Custom Business Rules
 - ...
 
 ## Implementations
