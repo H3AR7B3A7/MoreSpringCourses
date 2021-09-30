@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @Import(VideoService.class)
 @AllArgsConstructor
@@ -16,6 +18,11 @@ public class VideoController {
     @GetMapping("test")
     public String test(){
         return "test";
+    }
+    
+    @GetMapping("/videos")
+    public List<Video> getAllVideos() {
+        return videoService.getAllVideos();
     }
 
     @GetMapping("/videos/{id}")

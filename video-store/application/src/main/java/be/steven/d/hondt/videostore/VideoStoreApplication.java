@@ -27,11 +27,11 @@ public class VideoStoreApplication {
     @Bean
     CommandLineRunner commandLineRunner(JdbcTemplate jdbcTemplate) {
         String sql1 = "SELECT count(*) FROM VIDEOS";
-        String sql2 = "SELECT NAME FROM VIDEOS WHERE ID = 1";
+        String sql2 = "SELECT NAME FROM VIDEOS WHERE ID = 0";
         
         Integer numberOfVideos = jdbcTemplate.queryForObject(sql1, Integer.class);
         String firstVideo = jdbcTemplate.queryForObject(sql2, String.class);
-        Video video = videoRepository.findById(1);
+        Video video = videoRepository.findById(0);
         
         return args -> {
             log.warn("There are {} videos.", numberOfVideos);

@@ -6,6 +6,8 @@ import be.steven.d.dog.repository.VideoRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JdbcVideoRepository implements VideoRepository {
     
@@ -14,7 +16,13 @@ public class JdbcVideoRepository implements VideoRepository {
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
-    
+
+    @Override
+    public List<Video> findAll() {
+        String sql = "SELECT * FROM VIDEOS";
+        return jdbcTemplate.query(sql, new VideoRowMapper());
+    }
+
     @Override
     public Video findById(Integer id) {
         String sql = "SELECT * FROM VIDEOS WHERE ID = ?";

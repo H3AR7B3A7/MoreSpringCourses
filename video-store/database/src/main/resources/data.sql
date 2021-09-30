@@ -1,2 +1,4 @@
-insert into VIDEOS (ID, NAME, AMOUNT)
-    values(1, 'F9', 100);
+insert into VIDEOS (NAME, AMOUNT)
+    values('F9', 100);
+insert into VIDEOS (NAME, AMOUNT)
+    values('LotR', 100);
