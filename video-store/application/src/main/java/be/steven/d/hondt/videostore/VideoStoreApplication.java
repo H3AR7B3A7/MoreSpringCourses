@@ -4,25 +4,21 @@ import be.steven.d.dog.Video;
 import be.steven.d.dog.VideoController;
 import be.steven.d.dog.config.VideoConfig;
 import be.steven.d.dog.repository.VideoRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackageClasses = {VideoConfig.class, VideoController.class})
 @Slf4j
-@Import({VideoConfig.class, VideoController.class})
+@AllArgsConstructor
+//@Import({VideoConfig.class, VideoController.class})
 public class VideoStoreApplication {
     
     private VideoRepository videoRepository;
-
-    public VideoStoreApplication(VideoRepository videoRepository) {
-        this.videoRepository = videoRepository;
-    }
 
     public static void main(String[] args) {
         SpringApplication.run(VideoStoreApplication.class, args);
