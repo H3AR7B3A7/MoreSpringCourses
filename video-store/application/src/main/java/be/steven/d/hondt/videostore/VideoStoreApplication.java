@@ -1,6 +1,7 @@
 package be.steven.d.hondt.videostore;
 
 import be.steven.d.dog.Video;
+import be.steven.d.dog.VideoController;
 import be.steven.d.dog.config.VideoConfig;
 import be.steven.d.dog.repository.VideoRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 @SpringBootApplication
 @Slf4j
-@Import(VideoConfig.class)
+@Import({VideoConfig.class, VideoController.class})
 public class VideoStoreApplication {
     
     private VideoRepository videoRepository;
