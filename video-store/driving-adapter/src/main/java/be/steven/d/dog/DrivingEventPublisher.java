@@ -1,21 +1,19 @@
 package be.steven.d.dog;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class MyEventPublisher {
+@AllArgsConstructor
+public class DrivingEventPublisher {
     private final ApplicationEventPublisher applicationEventPublisher;
-
-    public MyEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
-        this.applicationEventPublisher = applicationEventPublisher;
-    }
 
     public void publishMyEvent(final String message) {
         log.warn("Publishing event: {}", message);
-        MyEvent myEvent = new MyEvent(this, message);
-        applicationEventPublisher.publishEvent(myEvent);
+        DrivingEvent drivingEvent = new DrivingEvent(this, message);
+        applicationEventPublisher.publishEvent(drivingEvent);
     }
 }

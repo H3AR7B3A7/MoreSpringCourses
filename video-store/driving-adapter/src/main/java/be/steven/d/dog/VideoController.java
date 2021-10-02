@@ -14,7 +14,7 @@ import java.util.List;
 public class VideoController {
     
     private final VideoService videoService;
-    private MyEventPublisher myEventPublisher;
+    private DrivingEventPublisher drivingEventPublisher;
     
     @GetMapping("test")
     public String test(){
@@ -23,7 +23,7 @@ public class VideoController {
     
     @GetMapping("/videos")
     public List<Video> getAllVideos() {
-        myEventPublisher.publishMyEvent("All videos request...");
+        drivingEventPublisher.publishMyEvent("All videos request...");
         return videoService.getAllVideos();
     }
 

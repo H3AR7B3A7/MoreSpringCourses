@@ -2,10 +2,10 @@ package be.steven.d.dog;
 
 import org.springframework.context.ApplicationEvent;
 
-public class MyEvent extends ApplicationEvent {
-    private String message;
+public class DrivenEvent extends ApplicationEvent {
+    private final String message;
 
-    public MyEvent(Object source, String message) {
+    public DrivenEvent(Object source, String message) {
         super(source);
         this.message = message;
     }

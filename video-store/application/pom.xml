@@ -17,26 +17,31 @@
     </properties>
 
     <dependencies>
-        <dependency> <!-- ONLY NEEDED FOR THE EXAMPLE BEAN IN VIDEO STORE APPLICATION -->
+        <dependency> <!-- ONLY NEEDED FOR THE EXAMPLE BEAN IN 'VideoStoreApplication' -->
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
         </dependency>
-        <dependency> <!-- ONLY NEEDED FOR THE EXAMPLE BEAN IN VIDEO STORE APPLICATION -->
+        <dependency> <!-- ONLY NEEDED FOR THE EXAMPLE BEAN IN 'VideoStoreApplication' -->
             <groupId>be.steven.d.dog</groupId>
             <artifactId>database</artifactId>
             <version>0.0.1</version>
         </dependency>
         <dependency>
             <groupId>be.steven.d.dog</groupId>
-            <artifactId>adapter</artifactId>
+            <artifactId>driving-adapter</artifactId>
             <version>0.0.1</version>
             <scope>compile</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>be.steven.d.dog</groupId>-->
+<!--            <artifactId>domain</artifactId>-->
+<!--            <version>0.0.1</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>be.steven.d.dog</groupId>
-            <artifactId>domain</artifactId>
+            <artifactId>driven-adapter</artifactId>
             <version>0.0.1</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

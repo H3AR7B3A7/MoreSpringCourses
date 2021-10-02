@@ -7,10 +7,11 @@
         <module>domain</module>
         <module>application</module>
         <module>database</module>
-        <module>adapter</module>
+        <module>driving-adapter</module>
         <module>service</module>
         <module>events</module>
         <module>model</module>
+        <module>driven-adapter</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

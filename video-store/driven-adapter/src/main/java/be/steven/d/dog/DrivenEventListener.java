@@ -6,9 +6,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class MyEventListener implements ApplicationListener<MyEvent> {
+public class DrivenEventListener implements ApplicationListener<DrivenEvent> {
+
     @Override
-    public void onApplicationEvent(MyEvent event) {
-        log.warn("Event received: {}", event.getMessage());
+    public void onApplicationEvent(DrivenEvent event) {
+        log.warn("I am driven by a driving event...");
     }
 }
