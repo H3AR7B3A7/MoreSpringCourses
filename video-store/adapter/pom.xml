@@ -13,15 +13,19 @@
     <dependencies>
         <dependency>
             <groupId>be.steven.d.dog</groupId>
-            <artifactId>domain</artifactId>
+            <artifactId>service</artifactId>
             <version>0.0.1</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>be.steven.d.dog</groupId>
-            <artifactId>service</artifactId>
+            <artifactId>model</artifactId>
             <version>0.0.1</version>
-            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>be.steven.d.dog</groupId>
+            <artifactId>events</artifactId>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
 

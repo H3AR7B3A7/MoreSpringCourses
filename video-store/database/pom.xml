@@ -28,9 +28,8 @@
         </dependency>
         <dependency>
             <groupId>be.steven.d.dog</groupId>
-            <artifactId>domain</artifactId>
+            <artifactId>model</artifactId>
             <version>0.0.1</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

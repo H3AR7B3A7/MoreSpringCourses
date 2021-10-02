@@ -17,11 +17,11 @@
     </properties>
 
     <dependencies>
-        <dependency>
+        <dependency> <!-- ONLY NEEDED FOR THE EXAMPLE BEAN IN VIDEO STORE APPLICATION -->
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
         </dependency>
-        <dependency>
+        <dependency> <!-- ONLY NEEDED FOR THE EXAMPLE BEAN IN VIDEO STORE APPLICATION -->
             <groupId>be.steven.d.dog</groupId>
             <artifactId>database</artifactId>
             <version>0.0.1</version>
@@ -29,6 +29,12 @@
         <dependency>
             <groupId>be.steven.d.dog</groupId>
             <artifactId>adapter</artifactId>
+            <version>0.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>be.steven.d.dog</groupId>
+            <artifactId>domain</artifactId>
             <version>0.0.1</version>
             <scope>compile</scope>
         </dependency>

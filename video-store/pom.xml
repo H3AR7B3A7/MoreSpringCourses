@@ -9,6 +9,8 @@
         <module>database</module>
         <module>adapter</module>
         <module>service</module>
+        <module>events</module>
+        <module>model</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
