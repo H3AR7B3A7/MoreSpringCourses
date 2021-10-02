@@ -29,3 +29,5 @@
   - [Conference Thymeleaf](conference-app-thymeleaf/README.md)
 - **Documenting Spring Data Rest APIs with Swagger and Springfox**, a Pluralsight course by Craig Golightly
   - [Swagger Demo](swagger-demo/README.md)
+- **Versioning Spring Data REST APIs**, a Pluralsight course by Craig Golightly
+  - [API Versioning](swagger-demo/Versioning.md)
