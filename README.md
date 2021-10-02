@@ -31,3 +31,9 @@
   - [Swagger Demo](swagger-demo/README.md)
 - **Versioning Spring Data REST APIs**, a Pluralsight course by Craig Golightly
   - [API Versioning](swagger-demo/Versioning.md)
+
+## Data
+
+- **Overview of Spring Data**, a Pluralsight course by Andrew Morgan
+  - [Overview](spring-data-overview/README.md)
+  - [Mongo](spring-data-overview-mongo/README.md)
