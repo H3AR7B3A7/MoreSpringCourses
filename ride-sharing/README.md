@@ -60,6 +60,18 @@ public Car findCar(Strin id) {
 }
 ```
 
+## My SQL & phpMyAdmin
+
+To download and run a docker container instance of My SQL run [MySQL.sh](MySQL.sh).
+
+Additionally, an instance of phpMyAdmin will be available on: 
+
+http://localhost:8081
+
+username: root
+password pass
+
+## Some Interesting Articles
 
 [JDBC or Hibernate with/without Spring Data](https://stackoverflow.com/questions/42470060/spring-data-jdbc-spring-data-jpa-vs-hibernate/42488593)
 
