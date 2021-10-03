@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface FlightCRUDRepository extends CrudRepository<Flight, Long> {
+public interface FlightCRUDRepository extends CrudRepository<Flight, String> {
     
     List<Flight> findByOrigin(String origin);
     List<Flight> findByOriginAndDestination(String origin, String destination);

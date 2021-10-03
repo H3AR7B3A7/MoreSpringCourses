@@ -5,15 +5,18 @@ import com.pluralsight.springdataoverview.repository.FlightCRUDRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 
+import java.time.Clock;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJpaTest
+@DataMongoTest
 public class DerivedQueryTest {
+
+    private final Clock millisecondClock = Clock.tick(Clock.systemDefaultZone(), Duration.ofNanos(1_000_000));
 
     @Autowired
     private FlightCRUDRepository repository;
@@ -78,7 +81,7 @@ public class DerivedQueryTest {
         final Flight flight = new Flight();
         flight.setOrigin(origin);
         flight.setDestination(destination);
-        flight.setScheduledAt(LocalDateTime.now());
+        flight.setScheduledAt(LocalDateTime.now(millisecondClock));
         return flight;
     }
     

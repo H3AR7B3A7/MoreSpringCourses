@@ -5,17 +5,22 @@ import com.pluralsight.springdataoverview.repository.FlightRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+
+import java.time.Clock;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Iterator;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.data.domain.Sort.Direction.DESC;
 
-@DataJpaTest
+@DataMongoTest
 public class PagingAndSortingTest {
+
+    private final Clock millisecondClock = Clock.tick(Clock.systemDefaultZone(), Duration.ofNanos(1_000_000));
 
     @Autowired
     private FlightRepository repository;
@@ -48,7 +53,7 @@ public class PagingAndSortingTest {
 
     @Test
     void shouldSortFlightsByScheduleAndThenName() {
-        final LocalDateTime now = LocalDateTime.now();
+        final LocalDateTime now = LocalDateTime.now(millisecondClock);
         final Flight flight1 = createFlight("Paris", now);
         final Flight flight2 = createFlight("Paris", now.plusHours(2));
         final Flight flight3 = createFlight("Paris", now.plusHours(1));
@@ -138,6 +143,6 @@ public class PagingAndSortingTest {
     }
     
     private Flight createFlight(String destination) {
-        return createFlight(destination, LocalDateTime.now());
+        return createFlight(destination, LocalDateTime.now(millisecondClock));
     }
 }
