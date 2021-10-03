@@ -68,3 +68,23 @@ Benefits:
 ```java
 Page<Customer> findByName(String name, Pageable pageable, Sort sort);
 ```
+
+## Dependencies For SQL Implementations
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+</dependency>
+```
+
+## Custom Implementations
+
+*For custom implementation we need a separate interface.*
+
+We can extend our custom interface in the Spring Data Interface and write our own implementation of the custom interface.
+To write the implementation we can use the EntityManager.
