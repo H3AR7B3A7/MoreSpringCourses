@@ -1,4 +1,4 @@
-package be.steven.d.dog.ridesharing;
+package be.steven.d.dog.ridesharing.model;
 
 public class Ride {
     private String name;

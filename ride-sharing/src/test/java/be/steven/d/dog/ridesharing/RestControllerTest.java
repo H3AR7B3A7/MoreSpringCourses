@@ -1,5 +1,6 @@
 package be.steven.d.dog.ridesharing;
 
+import be.steven.d.dog.ridesharing.model.Ride;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;

@@ -1,12 +1,14 @@
-package be.steven.d.dog.ridesharing;
+package be.steven.d.dog.ridesharing.repository.impl;
 
+import be.steven.d.dog.ridesharing.model.Ride;
+import be.steven.d.dog.ridesharing.repository.RideRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository("rideRepository")
-public class RideRepositoryImpl implements RideRepository{
+public class RideRepositoryImpl implements RideRepository {
     @Override
     public List<Ride> getRides() {
         Ride ride = new Ride();

@@ -1,5 +1,8 @@
-package be.steven.d.dog.ridesharing;
+package be.steven.d.dog.ridesharing.service.impl;
 
+import be.steven.d.dog.ridesharing.model.Ride;
+import be.steven.d.dog.ridesharing.repository.RideRepository;
+import be.steven.d.dog.ridesharing.service.RideService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
