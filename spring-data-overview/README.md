@@ -62,3 +62,9 @@ Benefits:
 - Easy learning curve
   - No need to write native query
   - Easy to swap implementations
+
+## Paging & Sorting
+
+```java
+Page<Customer> findByName(String name, Pageable pageable, Sort sort);
+```
