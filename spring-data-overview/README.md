@@ -30,3 +30,35 @@ Abstractions:
 ## Module Hierarchy
 
 ![Module Hierarchy](module-hierarchy.png)
+
+## Spring Data Commons
+
+### CRUD Repository
+
+Marker interface:
+```java
+public interface CustomerRepository extends CrudRepository<Customer, Long> { }
+```
+
+### Deriving Queries
+
+Method signature:
+```java
+List<Customer> findByName(String name);
+```
+Derived query:
+```java
+entityManager.createNativeQuery(
+    "SELECT * FROM customers WHERE name = 'Steven' = ?")
+      .setParameters(1, origin)
+      .getResultList();
+```
+
+Benefits:
+- No boilerplate
+  - Generated for us
+  - Executed for us
+  - Mapped for us
+- Easy learning curve
+  - No need to write native query
+  - Easy to swap implementations
