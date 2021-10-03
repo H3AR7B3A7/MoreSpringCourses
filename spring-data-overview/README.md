@@ -88,3 +88,48 @@ Page<Customer> findByName(String name, Pageable pageable, Sort sort);
 
 We can extend our custom interface in the Spring Data Interface and write our own implementation of the custom interface.
 To write the implementation we can use the EntityManager.
+
+## Transactions
+
+**Atomicity**:
+
+*Transactions consist of multiple queries in one unit, that either all get executed or none will.*
+
+- Atomic
+
+Example:
+```java
+Session sess = factory.openSession();
+Transaction tx;
+try {
+    tx = sess.beginTransaction();
+    bookTicket(ticket, payment);
+    tx.commit();
+}
+catch (Exception e) {
+    if (tx != null) {
+        tx.rollback();
+    }
+    throw e;
+}
+finally {
+    sess.close();
+}
+```
+
+With annotation:
+
+```java
+@Transactional
+public void bookTicket(Booking booking) {
+    allocateSeat(booking.getSeat());
+    makePayment(booking.getCardDetails());
+}
+```
+Benefits:
+- No more boilerplate
+- Declarative and non-invasive
+- Bugs are less likely
+- Data-store agnostic
+
+*When using a non-transactional db like Casandra, this will do nothing.*
