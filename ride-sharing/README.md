@@ -59,3 +59,8 @@ public Car findCar(Strin id) {
 	return jdbcTemplate.queryForObject(sql, Car.class, id);
 }
 ```
+
+
+[JDBC or Hibernate with/without Spring Data](https://stackoverflow.com/questions/42470060/spring-data-jdbc-spring-data-jpa-vs-hibernate/42488593)
+
+[Difference between Hibernate & Data JPA](https://dzone.com/articles/what-is-the-difference-between-hibernate-and-sprin-1)
