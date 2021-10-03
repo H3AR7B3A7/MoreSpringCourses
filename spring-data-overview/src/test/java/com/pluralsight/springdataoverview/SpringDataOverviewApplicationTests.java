@@ -1,18 +1,14 @@
 package com.pluralsight.springdataoverview;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.pluralsight.springdataoverview.entity.Flight;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.EntityManager;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
 @DataJpaTest
 public class SpringDataOverviewApplicationTests {
 
@@ -20,7 +16,7 @@ public class SpringDataOverviewApplicationTests {
 	private EntityManager entityManager;
 
 	@Test
-	public void verifyFlighTCanBeSaved() {
+	public void verifyFlightCanBeSaved() {
 		final Flight flight =  new Flight();
 		flight.setOrigin("London");
 		flight.setDestination("New York");
