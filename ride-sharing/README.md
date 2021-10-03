@@ -1,0 +1,61 @@
+# Spring JDBC
+
+- Framework
+  - Less error prone
+- Pattern based
+  - No boilerplate
+- Injected resources
+  - Uses Spring DI libraries
+- ORM (like Hibernate and JPA, but simpler)
+- Works well with existing databases
+
+## Why
+
+- Reduce complexity
+- Design
+  - Testability
+- Portability
+- Business Focus
+  - No configuration
+
+## Example
+
+Regular JDBC:
+```java
+public Car getById(String id) {
+	Connection con = null;
+	PreparedStatement stmt = null;
+	Resultset = null;
+	
+	try {
+		String sql = "SELECT * FROM car WHERE id = ?";
+		con = DriverManager.getConnection("localhost:3306/cars);
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, id);
+		rs = stmt.executeQuery();
+		if (rs.next()) {
+			Car car = new Car();
+			car.setMake(rs.getString(1));
+			return car;
+		} else {
+			return null;
+		}
+	} catch (SQLException e) { 
+		e.printStackTRrace(); 
+	} finally {
+		try {
+			if (rt != null && !rs.isClosed()) {
+				rs.close();
+			}
+		} catch (Exception e) {}
+	}
+	return null;
+}
+```
+
+Spring JDBC:
+```java
+public Car findCar(Strin id) {
+	return jdbcTemplate.queryForObject(sql, Car.class, id);
+}
+```

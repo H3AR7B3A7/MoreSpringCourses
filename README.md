@@ -37,3 +37,10 @@
 - **Overview of Spring Data**, a Pluralsight course by Andrew Morgan
   - [Overview](spring-data-overview/README.md)
   - [Mongo](spring-data-overview-mongo/README.md)
+- **Building Applications Using Spring JDBC**, a Pluralsight course by Bryan Hansen
+  - [Ride Sharing](ride-sharing/README.md)
+
+## DDD & EDD
+
+- **Domain Driven Design & Event Driven Design**, an example project structure by me
+  - [Video Store](video-store/README.md)
