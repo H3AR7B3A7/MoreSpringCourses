@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -12,6 +13,6 @@
     <context:component-scan base-package="be.steven.d.dog"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-          p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
+          p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
 
 </beans>
