@@ -68,8 +68,23 @@ Additionally, an instance of phpMyAdmin will be available on:
 
 http://localhost:8081
 
+```
 username: root
-password pass
+password: pass
+```
+
+## Dependencies
+
+```xml
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-jdbc</artifactId>
+</dependency>
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+</dependency>
+```
 
 ## Some Interesting Articles
 
