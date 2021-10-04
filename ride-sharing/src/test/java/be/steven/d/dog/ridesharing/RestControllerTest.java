@@ -10,10 +10,15 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 public class RestControllerTest {
+    
+    private final RestTemplate restTemplate;
+
+    public RestControllerTest() {
+        this.restTemplate = new RestTemplate();
+    }
+    
     @Test(timeout = 3000)
     public void testGetRides() {
-        RestTemplate restTemplate = new RestTemplate();
-
         ResponseEntity<List<Ride>> ridesResponse = restTemplate.exchange(
                 "http://localhost:8080/rides", HttpMethod.GET,
                 null, new ParameterizedTypeReference<List<Ride>>() {
@@ -23,5 +28,14 @@ public class RestControllerTest {
         for (Ride ride : rides) {
             System.out.println("Ride name: " + ride.getName());
         }
+    }
+
+    @Test(timeout = 3000)
+    public void testCreateRide() {
+        Ride ride = new Ride();
+        ride.setName("Antwerp - Brussels");
+        ride.setDuration(60);
+
+        restTemplate.postForEntity("http://localhost:8080/rides", ride, Ride.class);
     }
 }
