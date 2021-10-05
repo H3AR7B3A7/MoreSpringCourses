@@ -88,8 +88,6 @@ password: pass
 
 ## CRUD
 
-### Create
-
 
 
 ## Some Interesting Articles
