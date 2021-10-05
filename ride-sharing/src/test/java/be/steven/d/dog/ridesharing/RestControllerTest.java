@@ -36,6 +36,8 @@ public class RestControllerTest {
         ride.setName("Antwerp - Brussels");
         ride.setDuration(60);
 
-        restTemplate.postForEntity("http://localhost:8080/rides", ride, Ride.class);
+        ride = restTemplate.postForObject("http://localhost:8080/rides", ride, Ride.class);
+
+        System.out.println("Ride: " + ride);
     }
 }
