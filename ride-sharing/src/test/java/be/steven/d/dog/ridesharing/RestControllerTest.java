@@ -12,15 +12,16 @@ import java.util.List;
 public class RestControllerTest {
     
     private final RestTemplate restTemplate;
+    private static final String BASE_URL = "http://localhost:8080/rides";
 
     public RestControllerTest() {
         this.restTemplate = new RestTemplate();
     }
     
     @Test(timeout = 3000)
-    public void testGetRides() {
+    public void getRidesTest() {
         ResponseEntity<List<Ride>> ridesResponse = restTemplate.exchange(
-                "http://localhost:8080/rides", HttpMethod.GET,
+                BASE_URL, HttpMethod.GET,
                 null, new ParameterizedTypeReference<List<Ride>>() {
                 });
         List<Ride> rides = ridesResponse.getBody();
@@ -31,13 +32,19 @@ public class RestControllerTest {
     }
 
     @Test(timeout = 3000)
-    public void testCreateRide() {
+    public void createRideTest() {
         Ride ride = new Ride();
-        ride.setName("Antwerp - Brussels");
+        ride.setName("Antwerp - Gent");
         ride.setDuration(60);
 
-        ride = restTemplate.postForObject("http://localhost:8080/rides", ride, Ride.class);
+        ride = restTemplate.postForObject(BASE_URL, ride, Ride.class);
 
+        System.out.println("Ride: " + ride);
+    }
+    
+    @Test(timeout = 3000)
+    public void getRideTest() {
+        Ride ride = restTemplate.getForObject(BASE_URL + "/5", Ride.class);
         System.out.println("Ride: " + ride);
     }
 }
