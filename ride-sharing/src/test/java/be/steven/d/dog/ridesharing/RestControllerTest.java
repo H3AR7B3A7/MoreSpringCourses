@@ -55,4 +55,9 @@ public class RestControllerTest {
         restTemplate.put(BASE_URL, ride);
         System.out.println("Ride name: " + ride.getName() + ", Duration: " + ride.getDuration());
     }
+    
+    @Test(timeout = 3000)
+    public void batchUpdateTest() {
+        restTemplate.getForObject(BASE_URL + "/batch", Object.class);
+    }
 }

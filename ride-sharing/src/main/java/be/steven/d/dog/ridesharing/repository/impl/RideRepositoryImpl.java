@@ -116,4 +116,12 @@ public class RideRepositoryImpl implements RideRepository {
         jdbcTemplate.update(sql, ride.getName(), ride.getDuration(), ride.getId());
         return ride;
     }
+    
+    // ALTER TABLE ride ADD ride_date DATETIME AFTER duration;
+
+    @Override
+    public void updateRides(List<Object[]> pairs) {
+        String sql = "UPDATE ride SET ride_date = ? WHERE id = ?";
+        jdbcTemplate.batchUpdate(sql, pairs);
+    }
 }

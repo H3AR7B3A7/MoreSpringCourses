@@ -5,6 +5,8 @@ import be.steven.d.dog.ridesharing.repository.RideRepository;
 import be.steven.d.dog.ridesharing.service.RideService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service("rideService")
@@ -36,5 +38,20 @@ public class RideServiceImpl implements RideService {
 //        rideToUpdate.setName(ride.getName());
 //        rideToUpdate.setDuration(ride.getDuration());
         return rideRepository.updateRide(ride);
+    }
+
+    @Override
+    public void batch() {
+        List<Ride> rides = rideRepository.getRides();
+        List<Object[]> pairs = new ArrayList<>();
+        
+        for (Ride ride : rides) {
+            Object[] tmp = {
+                    new Date(), ride.getId()
+            };
+            pairs.add(tmp);
+        }
+        
+        rideRepository.updateRides(pairs);
     }
 }
