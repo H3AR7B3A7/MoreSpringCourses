@@ -16,7 +16,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 
-@Configuration
+//@Configuration // Deleted and replaced by application.properties
 public class JpaConfiguration {
 
 	@Bean
