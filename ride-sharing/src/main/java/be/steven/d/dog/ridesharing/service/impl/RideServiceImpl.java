@@ -29,4 +29,12 @@ public class RideServiceImpl implements RideService {
     public Ride getRide(Integer id) {
         return rideRepository.getRide(id);
     }
+
+    @Override
+    public Ride updateRide(Ride ride) {
+//        Ride rideToUpdate = getRide(ride.getId());
+//        rideToUpdate.setName(ride.getName());
+//        rideToUpdate.setDuration(ride.getDuration());
+        return rideRepository.updateRide(ride);
+    }
 }

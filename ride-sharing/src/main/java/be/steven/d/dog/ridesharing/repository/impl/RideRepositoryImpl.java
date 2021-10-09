@@ -109,4 +109,11 @@ public class RideRepositoryImpl implements RideRepository {
         String sql = "SELECT * FROM ride WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, new RideRowMapper(), id);
     }
+
+    @Override
+    public Ride updateRide(Ride ride) {
+        String sql = "UPDATE ride SET name = ?, duration = ? WHERE id = ?";
+        jdbcTemplate.update(sql, ride.getName(), ride.getDuration(), ride.getId());
+        return ride;
+    }
 }

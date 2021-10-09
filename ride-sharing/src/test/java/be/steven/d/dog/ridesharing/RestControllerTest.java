@@ -47,4 +47,12 @@ public class RestControllerTest {
         Ride ride = restTemplate.getForObject(BASE_URL + "/5", Ride.class);
         System.out.println("Ride: " + ride);
     }
+    
+    @Test(timeout = 3000)
+    public void updateRideTest() {
+        Ride ride = restTemplate.getForObject(BASE_URL + "/5", Ride.class);
+        ride.setDuration(ride.getDuration() + 1);
+        restTemplate.put(BASE_URL, ride);
+        System.out.println("Ride name: " + ride.getName() + ", Duration: " + ride.getDuration());
+    }
 }
