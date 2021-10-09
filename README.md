@@ -39,6 +39,8 @@
   - [Mongo](spring-data-overview-mongo/README.md)
 - **Building Applications Using Spring JDBC**, a Pluralsight course by Bryan Hansen
   - [Ride Sharing](ride-sharing/README.md)
+- **Spring Data JPA**, a Pluralsight course by Dan Bunker
+  - [Conference App](conference-data-jpa/README.md)
 
 ## DDD & EDD
 
