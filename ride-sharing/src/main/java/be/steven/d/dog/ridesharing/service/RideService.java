@@ -16,4 +16,6 @@ public interface RideService {
     void batch();
 
     void deleteRide(Integer id);
+
+    void failingBatch();
 }

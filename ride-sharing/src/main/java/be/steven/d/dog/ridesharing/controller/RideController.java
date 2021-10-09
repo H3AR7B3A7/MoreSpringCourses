@@ -54,6 +54,12 @@ public class RideController {
         rideService.batch();
         return null;
     }
+
+    @GetMapping("/rides/failing-batch")
+    public @ResponseBody Object failingBatch() {
+        rideService.failingBatch();
+        return null;
+    }
     
     @DeleteMapping("/rides/{id}")
     public @ResponseBody Object deleteRide(@PathVariable(value = "id") Integer id) {

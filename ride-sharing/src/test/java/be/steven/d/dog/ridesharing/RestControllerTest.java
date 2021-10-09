@@ -70,4 +70,9 @@ public class RestControllerTest {
     public void exceptionTest() {
         restTemplate.getForObject(BASE_URL + "/test", Ride.class);
     }
+
+    @Test(timeout = 3000)
+    public void failingBatchUpdateTest() {
+        restTemplate.getForObject(BASE_URL + "/failing-batch", Object.class);
+    }
 }

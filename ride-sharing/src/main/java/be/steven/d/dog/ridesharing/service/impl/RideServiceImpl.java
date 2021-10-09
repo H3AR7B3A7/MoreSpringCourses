@@ -4,6 +4,7 @@ import be.steven.d.dog.ridesharing.model.Ride;
 import be.steven.d.dog.ridesharing.repository.RideRepository;
 import be.steven.d.dog.ridesharing.service.RideService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -53,6 +54,23 @@ public class RideServiceImpl implements RideService {
         }
         
         rideRepository.updateRides(pairs);
+    }
+
+    @Override
+    @Transactional
+    public void failingBatch() {
+        List<Ride> rides = rideRepository.getRides();
+        List<Object[]> pairs = new ArrayList<>();
+
+        for (Ride ride : rides) {
+            Object[] tmp = {
+                    new Date(), ride.getId()
+            };
+            pairs.add(tmp);
+        }
+        
+        rideRepository.updateRides(pairs);
+        throw new RuntimeException("Testing transactional exception handling...");
     }
 
     @Override
