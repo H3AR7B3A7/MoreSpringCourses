@@ -2,8 +2,13 @@ package be.steven.d.dog.ridesharing.controller;
 
 import be.steven.d.dog.ridesharing.model.Ride;
 import be.steven.d.dog.ridesharing.service.RideService;
+import be.steven.d.dog.ridesharing.util.ServiceError;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,4 +61,14 @@ public class RideController {
         return null;
     }
 
+    @GetMapping("/rides/test")
+    public @ResponseBody Ride exceptionTest() throws Exception {
+        throw new DataAccessException("Some exception message..."){};
+    }
+    
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ServiceError> handleExceptions(RuntimeException ex) {
+        ServiceError serviceError = new ServiceError(HttpStatus.OK.value(), ex.getMessage());
+        return new ResponseEntity<>(serviceError, HttpStatus.OK);
+    }
 }

@@ -65,4 +65,9 @@ public class RestControllerTest {
     public void deleteRideTest() {
         restTemplate.delete( BASE_URL + "/7");
     }
+    
+    @Test(timeout = 3000)
+    public void exceptionTest() {
+        restTemplate.getForObject(BASE_URL + "/test", Ride.class);
+    }
 }
