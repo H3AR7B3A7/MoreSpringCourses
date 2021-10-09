@@ -60,4 +60,9 @@ public class RestControllerTest {
     public void batchUpdateTest() {
         restTemplate.getForObject(BASE_URL + "/batch", Object.class);
     }
+    
+    @Test(timeout = 3000)
+    public void deleteRideTest() {
+        restTemplate.delete( BASE_URL + "/6");
+    }
 }

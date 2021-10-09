@@ -14,4 +14,6 @@ public interface RideRepository {
     Ride updateRide(Ride rideToUpdate);
 
     void updateRides(List<Object[]> pairs);
+
+    void deleteRide(Integer id);
 }

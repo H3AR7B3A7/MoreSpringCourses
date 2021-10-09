@@ -124,4 +124,10 @@ public class RideRepositoryImpl implements RideRepository {
         String sql = "UPDATE ride SET ride_date = ? WHERE id = ?";
         jdbcTemplate.batchUpdate(sql, pairs);
     }
+
+    @Override
+    public void deleteRide(Integer id) {
+        String sql = "DELETE FROM ride WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
 }
