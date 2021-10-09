@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 public class DrivenEventPublisher {
     private final ApplicationEventPublisher applicationEventPublisher;
 
+    @TransactionalEventListener
     public void publishDrivenEvent(String message){
         log.warn("Publishing event: {}", message);
         DrivenEvent drivenEvent = new DrivenEvent(this, message);
