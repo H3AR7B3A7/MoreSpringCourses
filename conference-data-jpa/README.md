@@ -9,7 +9,7 @@
 
 Spring Boot project:
 ```xml
-<!-- Everything you need for data management -->
+<!-- Everything you need for Spring Data JPA -->
 <dependency>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -22,7 +22,7 @@ Spring Boot project:
 </dependency>
 ```
 
-Spring project:
+These dependencies will be replacing:
 ```xml
 <!-- JPA spec implementation -->
 <dependency>
