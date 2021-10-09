@@ -63,6 +63,6 @@ public class RestControllerTest {
     
     @Test(timeout = 3000)
     public void deleteRideTest() {
-        restTemplate.delete( BASE_URL + "/6");
+        restTemplate.delete( BASE_URL + "/7");
     }
 }
