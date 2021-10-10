@@ -78,3 +78,23 @@ public interface SomeRepository extends JpaRepository<Some, Long> { }
 ## What is JPA
 
 Java Persistence API is an ORM-tool that maps relation database structure to java objects.
+
+## @Repository Stereotype
+
+- One of Springs core stereotypes: Indicates that an annotated class is a "Repository",
+originally defined by Domain-Driven Design as "a mechanism for encapsulating storage,
+retrieval, and search behavior which emulates a collection of objects".
+
+- A class thus annotated is eligible for Spring DataAccessException translation when used in 
+conjunction with a PersistenceExceptionTranslationPostProcessor. The annotated class is also
+clarified as to its role in the overall application architecture for the purpose of tooling, aspects, etc.
+
+- As of Spring 2.5, this annotation also serves as a specialization of @Component,
+allowing for implementation classes to be autodetected through classpath scanning.
+
+## Repository Architecture
+
+- Persistence contract
+- DAO pattern (In the pure form they use an interface, but it can also be classes)
+
+![Repo Architecture](repo-architecture.png)
