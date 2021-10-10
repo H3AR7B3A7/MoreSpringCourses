@@ -98,3 +98,35 @@ allowing for implementation classes to be autodetected through classpath scannin
 - DAO pattern (In the pure form they use an interface, but it can also be classes)
 
 ![Repo Architecture](repo-architecture.png)
+
+## Differences Standard Repository
+
+Differences between Spring Data JPA Repository & Standard Repository:
+- Java interface, not class (with 1 exception)
+- Map 1 to 1 with JPA entity (implemented through java generics)
+- Focus on DAO contract
+
+```java
+public interface SomeJpaRepository extends JpaRepository<Some, Long> { }
+```
+
+*With Spring Data JPA, we don't have to implement the interface.*
+
+## JpaRepository Hierarchy
+
+- Interface: Repository
+- Interface: CrudRepository
+- Interface: PagingAndSortingRepository
+- Interface: JpaRepository
+
+Functionalities:
+- Query DSL
+- CRUD operations
+- Paging and sorting
+- Helpers
+  - count()
+  - existsById(ID)
+  - flush()
+  - deleteInBatch()
+
+![JpaRepository Hierarchy](jpa-repo-hierarchy.png)
