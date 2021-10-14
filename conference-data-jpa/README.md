@@ -130,3 +130,6 @@ Functionalities:
   - deleteInBatch()
 
 ![JpaRepository Hierarchy](jpa-repo-hierarchy.png)
+
+---
+Work in progress...
