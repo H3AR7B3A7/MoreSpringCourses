@@ -19,5 +19,4 @@ public class SessionTest {
         List<Session> sessions = repository.getSessionsThatHaveName("Java");
         assertTrue(sessions.size() > 0);
     }
-
 }
