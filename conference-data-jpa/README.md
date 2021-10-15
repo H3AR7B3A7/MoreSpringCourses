@@ -157,6 +157,9 @@ Functionalities:
   }
   ```
 
+*We do not need the **@Repository** annotation, because Spring Data scans the classpath for any interface or class
+that is of type JpaRepository.*
+
 ## Refactoring Existing Repositories
 
 - Make sure to have sufficient tests for the persistence tier
