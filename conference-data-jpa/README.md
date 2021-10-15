@@ -131,5 +131,37 @@ Functionalities:
 
 ![JpaRepository Hierarchy](jpa-repo-hierarchy.png)
 
+## Good Practices
+
+- DRY
+- Convenience helpers & methods
+- Extending a BaseEntity (e.g.: Auditing columns on every table)
+  - createdAt()
+  - updatedAt()
+- Create our own abstraction interface and extend it in the JpaRepo hierarchy (IoC)
+  - Interface: Repository
+  - Interface: CrudRepository
+  - Interface: PagingAndSortingRepository
+  - Interface: JpaRepository
+  - Interface: MyCustomRepository
+
+
+  Example:
+  ```java
+  public interface SomeJpaRepository extends SomeRepositry, CrudRepositry<Some, Long> {
+      // Extra functionality on top of the provided CRUD
+  }
+  
+  public interface SomeRepository {
+      // Implemented methods and helpers to be used by the service
+  }
+  ```
+
+## Refactoring Existing Repositories
+
+- Make sure to have sufficient tests for the persistence tier
+- Create a new interface that extends JpaRepository and give it a new descriptive name
+- Consider turning the existing repository into a proxy to the new JpaRepository to minimise client code changes
+
 ---
 Work in progress...
