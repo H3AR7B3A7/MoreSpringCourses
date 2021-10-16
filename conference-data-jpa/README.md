@@ -166,5 +166,14 @@ that is of type JpaRepository.*
 - Create a new interface that extends JpaRepository and give it a new descriptive name
 - Consider turning the existing repository into a proxy to the new JpaRepository to minimise client code changes
 
+## Query DSL
+
+Advantages of Query Domain Specific Language:
+- Spend time on your data model
+- Reduced codebase
+- Query validity
+- Proven methodology in Rails and Django
+
+
 ---
 Work in progress...
