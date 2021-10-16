@@ -25,14 +25,14 @@ public class SpeakerTest {
     private EntityManager entityManager;
 
     @Test
-    public void testFind() throws Exception {
+    public void findTest() throws Exception {
         Speaker speaker = repository.getOne(1L);
         assertNotNull(speaker);
     }
 
     @Test
     @Transactional
-    public void testSaveAndGetAndDelete() throws Exception {
+    public void saveAndGetAndDeleteTest() throws Exception {
         Speaker s = new Speaker();
         s.setCompany("Pluralsight");
         s.setFirstName("Dan");
@@ -52,14 +52,20 @@ public class SpeakerTest {
     }
 
     @Test
-    public void testJpaAnd() throws Exception {
+    public void jpaAndTest() throws Exception {
         List<Speaker> speakers = repository.findByFirstNameAndLastName("Justin", "Clark");
         assertTrue(speakers.size() > 0);
     }
 
     @Test
-    public void testJpaOr() throws Exception {
+    public void jpaOrTest() throws Exception {
         List<Speaker> speakers = repository.findByFirstNameOrLastName("Justin", "Clark");
+        assertTrue(speakers.size() > 0);
+    }
+
+    @Test
+    void jpaNotNullTest() {
+        List<Speaker> speakers = repository.findBySpeakerPhotoNull();
         assertTrue(speakers.size() > 0);
     }
 }
