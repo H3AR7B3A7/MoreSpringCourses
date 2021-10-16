@@ -56,4 +56,8 @@ public class SessionRepository {
     public List<Session> findBySessionLengthNot(Integer length) {
         return jpaRepository.findBySessionLengthNot(length);
     }
+    
+    public List<Session> findBySessionNameNotLike(String name){
+        return jpaRepository.findBySessionNameNotLike(name);
+    }
 }

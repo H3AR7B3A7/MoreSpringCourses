@@ -22,8 +22,14 @@ public class SessionTest {
     }
     
     @Test
-    public void testJpaNot() throws Exception {
+    public void jpaNotTest() throws Exception {
         List<Session> sessions = repository.findBySessionLengthNot(30);
+        assertTrue(sessions.size() > 0);
+    }
+    
+    @Test
+    public void jpaNotLikeTest() throws Exception {
+        List<Session> sessions = repository.findBySessionNameNotLike("Java%");
         assertTrue(sessions.size() > 0);
     }
 }

@@ -11,4 +11,5 @@ public interface SessionsJpaRepository extends JpaRepository<Session, Long> {
     
     List<Session> findBySessionLengthNot(Integer length);
 
+    List<Session> findBySessionNameNotLike(String name);
 }
