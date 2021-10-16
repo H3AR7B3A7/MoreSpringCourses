@@ -259,5 +259,19 @@ JPQL:
 WHERE a.sessionLength < ?1
 ```
 
+### Before- After & Between
+
+When you need to perform a less than, greater than or range comparison with date/time data types.
+
+Query DSL:
+```java
+findByStartDateBefore(LocalDateTime date);
+```
+JPQL:
+```sql
+WHERE a.startDate < ?1
+```
+
+
 ---
 Work in progress...
