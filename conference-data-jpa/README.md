@@ -198,10 +198,11 @@ Jpa is entity based and so can return:
 
 They combine multiple criteria query filters together .
 
+Query DSL:
 ```java
 findByFirstNameAndLastName(String first, String last);
 ```
-
+JPQL:
 ```sql
 WHERE a.firstname = ?1 AND a.lastname = ?2
 ```
@@ -210,10 +211,11 @@ WHERE a.firstname = ?1 AND a.lastname = ?2
 
 The default '=' when comparing the criteria with the filter value. Use 'Not' when wanting to compare not equals.
 
+Query DSL:
 ```java
 findBySessionLengthNot(Integer length);
 ```
-
+JPQL:
 ```sql
 WHERE a.sessionLength != ?1
 ```
@@ -222,10 +224,11 @@ WHERE a.sessionLength != ?1
 
 Useful when trying to match, or not match, a portion of the criteria filter value.
 
+Query DSL:
 ```java
 findBySessionNameLike("Java%")
 ```
-
+JPQL:
 ```sql
 WHERE a.sessionName like ?1
 ```
@@ -234,14 +237,27 @@ WHERE a.sessionName like ?1
 
 Similar to 'Like' keyword except the % is automatically added to the filter value.
 
+Query DSL:
 ```java
 findBySessionNameStartingWith(String startsWith);
 ```
-
+JPQL:
 ```sql
 WHERE a.sessionName like ?1  -- startsWith%
 ```
 
+### <(=) & >(=)
+
+When you need to perform a <,<=,> or >= comparison with number data types.
+
+Query DSL:
+```java
+findBySessionLengthLessThan(Integer size);
+```
+JPQL:
+```sql
+WHERE a.sessionLength < ?1
+```
 
 ---
 Work in progress...
