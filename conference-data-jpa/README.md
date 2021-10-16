@@ -272,6 +272,20 @@ JPQL:
 WHERE a.startDate < ?1
 ```
 
+### True & False
+
+Useful when comparing boolean values with true or false.
+
+Query DSL:
+```java
+findByIncludesWorkshopTrue();
+```
+
+JPQL:
+```sql
+WHERE a.includesWorkshop = true
+```
+
 
 ---
 Work in progress...
