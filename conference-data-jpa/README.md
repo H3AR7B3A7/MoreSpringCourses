@@ -286,6 +286,18 @@ JPQL:
 WHERE a.includesWorkshop = true
 ```
 
+### (Is)Null & (Is)NotNull
+
+Used to check whether a criteria is null or not null.
+
+Query DSL
+```java
+findBySpeakerPhotoNotNull();
+```
+JPQL:
+```sql
+WHERE a.speakerPhoto NOT NULL
+```
 
 ---
 Work in progress...
