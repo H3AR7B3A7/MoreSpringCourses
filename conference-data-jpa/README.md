@@ -338,6 +338,23 @@ JPQL:
 WHERE a.lastname = ?1 ORDER BY a.firstname ASC
 ```
 
+### First, Top & Distinct
+
+Used to limit the results returned by the query.
+
+Query DSL:
+```java
+findFirstByFirstName(String name);
+findTop5ByFirstName(String name);
+findDistinctByFirstName(String name);
+```
+JPQL:
+```sql
+WHERE a.firstname = ?1 limit 1
+WHERE a.firstname = ?1 limit 5
+SELECT DISTINCT WHERE a.firstname = ?1
+```
+
 
 ---
 Work in progress...
