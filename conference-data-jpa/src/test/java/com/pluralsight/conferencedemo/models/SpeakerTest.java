@@ -86,4 +86,10 @@ public class SpeakerTest {
         List<Speaker> speakers = repository.findByLastNameOrderByFirstNameAsc("Williams");
         assertTrue(speakers.size() > 0);
     }
+
+    @Test
+    void jpaFirstTest() {
+        Speaker speaker = repository.findFirstByFirstName("James");
+        assertEquals("James", speaker.getFirstName());
+    }
 }
