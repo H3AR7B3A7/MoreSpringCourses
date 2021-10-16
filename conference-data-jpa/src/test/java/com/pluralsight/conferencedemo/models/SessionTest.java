@@ -38,4 +38,10 @@ public class SessionTest {
         List<Session> sessions = repository.findBySessionNameStartingWith("A");
         assertTrue(sessions.size() > 0);
     }
+    
+    @Test
+    public void jpaLessThanTest() throws Exception {
+        List<Session> sessions = repository.findBySessionLengthLessThan(45);
+        assertTrue(sessions.size() > 0);
+    }
 }

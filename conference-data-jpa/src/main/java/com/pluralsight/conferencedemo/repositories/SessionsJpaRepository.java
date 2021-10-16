@@ -15,4 +15,5 @@ public interface SessionsJpaRepository extends JpaRepository<Session, Long> {
 
     List<Session> findBySessionNameStartingWith(String name);
 
+    List<Session> findBySessionLengthLessThan(Integer length);
 }

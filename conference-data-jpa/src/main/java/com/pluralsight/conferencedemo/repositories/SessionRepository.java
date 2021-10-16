@@ -64,4 +64,8 @@ public class SessionRepository {
     public List<Session> findBySessionNameStartingWith(String name){
         return jpaRepository.findBySessionNameStartingWith(name);
     }
+
+    public List<Session> findBySessionLengthLessThan(Integer length){
+        return jpaRepository.findBySessionLengthLessThan(length);   
+    }
 }
