@@ -74,4 +74,10 @@ public class SpeakerTest {
         List<Speaker> speakers = repository.findByCompanyIn(List.of("National Bank", "Contoso"));
         assertTrue(speakers.size() > 0);
     }
+
+    @Test
+    void jpaIgnoreCaseTest() {
+        List<Speaker> speakers = repository.findByCompanyIgnoreCase("national bank");
+        assertTrue(speakers.size() > 0);
+    }
 }
