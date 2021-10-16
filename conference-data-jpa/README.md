@@ -220,5 +220,15 @@ WHERE a.sessionLength != ?1
 
 ### Like & NotLike
 
+Useful when trying to match, or not match, a portion of the criteria filter value.
+
+```java
+findBySessionNameLike("Java%")
+```
+
+```sql
+WHERE a.sessionName like ?1
+```
+
 ---
 Work in progress...
