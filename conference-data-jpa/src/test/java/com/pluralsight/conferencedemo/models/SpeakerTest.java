@@ -80,4 +80,10 @@ public class SpeakerTest {
         List<Speaker> speakers = repository.findByCompanyIgnoreCase("national bank");
         assertTrue(speakers.size() > 0);
     }
+
+    @Test
+    void jpaOrderByTest() {
+        List<Speaker> speakers = repository.findByLastNameOrderByFirstNameAsc("Williams");
+        assertTrue(speakers.size() > 0);
+    }
 }
