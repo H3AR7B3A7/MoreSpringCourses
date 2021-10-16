@@ -52,4 +52,8 @@ public class SessionRepository {
 //                .setParameter("name", "%" + name + "%").getResultList();
         return jpaRepository.findBySessionNameContains(name);
     }
+
+    public List<Session> findBySessionLengthNot(Integer length) {
+        return jpaRepository.findBySessionLengthNot(length);
+    }
 }
