@@ -60,4 +60,8 @@ public class SessionRepository {
     public List<Session> findBySessionNameNotLike(String name){
         return jpaRepository.findBySessionNameNotLike(name);
     }
+    
+    public List<Session> findBySessionNameStartingWith(String name){
+        return jpaRepository.findBySessionNameStartingWith(name);
+    }
 }

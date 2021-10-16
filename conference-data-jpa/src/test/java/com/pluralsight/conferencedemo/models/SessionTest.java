@@ -32,4 +32,10 @@ public class SessionTest {
         List<Session> sessions = repository.findBySessionNameNotLike("Java%");
         assertTrue(sessions.size() > 0);
     }
+    
+    @Test
+    public void jpaStartingWithTest() throws Exception {
+        List<Session> sessions = repository.findBySessionNameStartingWith("A");
+        assertTrue(sessions.size() > 0);
+    }
 }
