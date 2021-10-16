@@ -174,6 +174,37 @@ Advantages of Query Domain Specific Language:
 - Query validity
 - Proven methodology in Rails and Django
 
+### Basics
+
+- Query DSL = Method contracts
+- Can begin with:
+  - findBy
+  - queryBy
+  - readBy
+  - countBy
+  - getBy
+- Query DSL uses JPA attribute names for criteria
+- Multiple criteria combined with 'And' & 'Or'
+
+### Return Types
+
+Jpa is entity based and so can return:
+- Entity
+- Collection of entity
+- Long for count
+- ...
+
+### And & Or
+
+They combine multiple criteria query filters together .
+
+```java
+findByFirstNameAndLastName(String first, String last);
+```
+
+```sql
+WHERE a.firstname = ?1 AND a.lastname = ?2
+```
 
 ---
 Work in progress...
