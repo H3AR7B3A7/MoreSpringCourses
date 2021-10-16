@@ -230,5 +230,18 @@ findBySessionNameLike("Java%")
 WHERE a.sessionName like ?1
 ```
 
+### StartingWith & EndingWith
+
+Similar to 'Like' keyword except the % is automatically added to the filter value.
+
+```java
+findBySessionNameStartingWith(String startsWith);
+```
+
+```sql
+WHERE a.sessionName like ?1  -- startsWith%
+```
+
+
 ---
 Work in progress...
