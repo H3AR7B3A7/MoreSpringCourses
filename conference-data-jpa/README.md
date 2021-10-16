@@ -325,6 +325,18 @@ JPQL
 WHERE UPPER(a.company) = UPPER(?1)
 ```
 
+### OrderBy
+
+Used to setup an order by clause on your query.
+
+Query DSL:
+```java
+findByLastNameOrderByFirstNameAsc(String name);
+```
+JPQL:
+```sql
+WHERE a.lastname = ?1 ORDER BY a.firstname ASC
+```
 
 
 ---
