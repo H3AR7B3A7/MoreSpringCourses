@@ -305,11 +305,24 @@ When you need to test if a column value is part of a collection or set of values
 
 Query DSL:
 ```java
-findByCompanyIn();
+findByCompanyIn(List<String> companies);
 ```
 JPQL:
 ```sql
 WHERE a.company in ?1
+```
+
+### Ignore Case
+
+When you need to perform case-insensitive comparison.
+
+Query DSL:
+```
+findByCompanyIgnoreCase(String company);
+```
+JPQL
+```sql
+WHERE UPPER(a.company) = UPPER(?1)
 ```
 
 
