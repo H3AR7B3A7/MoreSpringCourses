@@ -299,5 +299,20 @@ JPQL:
 WHERE a.speakerPhoto NOT NULL
 ```
 
+### In & NotIn
+
+When you need to test if a column value is part of a collection or set of values or not.
+
+Query DSL:
+```java
+findByCompanyIn();
+```
+JPQL:
+```sql
+WHERE a.company in ?1
+```
+
+
+
 ---
 Work in progress...
