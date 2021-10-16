@@ -68,4 +68,10 @@ public class SpeakerTest {
         List<Speaker> speakers = repository.findBySpeakerPhotoNull();
         assertTrue(speakers.size() > 0);
     }
+
+    @Test
+    void jpaInTest() {
+        List<Speaker> speakers = repository.findByCompanyIn(List.of("National Bank", "Contoso"));
+        assertTrue(speakers.size() > 0);
+    }
 }

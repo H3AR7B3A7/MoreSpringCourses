@@ -12,4 +12,6 @@ public interface SpeakerJpaRepository extends JpaRepository<Speaker, Long> {
     List<Speaker> findByFirstNameOrLastName(String first, String last);
     
     List<Speaker> findBySpeakerPhotoNull();
+    
+    List<Speaker> findByCompanyIn(List<String> companies);
 }
