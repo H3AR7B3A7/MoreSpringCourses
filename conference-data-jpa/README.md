@@ -206,5 +206,19 @@ findByFirstNameAndLastName(String first, String last);
 WHERE a.firstname = ?1 AND a.lastname = ?2
 ```
 
+### Equals, Is & Not
+
+The default '=' when comparing the criteria with the filter value. Use 'Not' when wanting to compare not equals.
+
+```java
+findBySessionLengthNot(Integer length);
+```
+
+```sql
+WHERE a.sessionLength != ?1
+```
+
+### Like & NotLike
+
 ---
 Work in progress...
