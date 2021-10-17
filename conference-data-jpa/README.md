@@ -416,5 +416,7 @@ public interface TicketPriceJpaRepository extends JpaRepository<TicketPrice, Lon
 }
 ```
 
+*We can also make named native queries when we set nativeQuery = true.*
+
 ---
 Work in progress...
