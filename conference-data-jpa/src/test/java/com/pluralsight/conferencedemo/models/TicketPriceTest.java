@@ -1,6 +1,7 @@
 package com.pluralsight.conferencedemo.models;
 
 import com.pluralsight.conferencedemo.repositories.PricingCategoryRepository;
+import com.pluralsight.conferencedemo.repositories.TicketPriceJpaRepository;
 import com.pluralsight.conferencedemo.repositories.TicketPriceRepository;
 import com.pluralsight.conferencedemo.repositories.TicketTypeRepository;
 import org.junit.jupiter.api.Test;
@@ -13,14 +14,16 @@ import javax.transaction.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 public class TicketPriceTest {
     @Autowired
-    private TicketPriceRepository repository;
+    private TicketPriceJpaRepository repository;
 
     @Autowired
     private PricingCategoryRepository pcRepository;
@@ -33,7 +36,7 @@ public class TicketPriceTest {
 
     @Test
     public void testFind() throws Exception {
-        TicketPrice ticket = repository.find(1L);
+        TicketPrice ticket = repository.getOne(1L);
         assertNotNull(ticket);
     }
 
@@ -47,16 +50,21 @@ public class TicketPriceTest {
 
         tp.setTicketType(ttRepository.find("C"));
 
-        tp = repository.create(tp);
+        tp = repository.saveAndFlush(tp);
 
-        // clear the persistence context so we don't return the previously cached location object
+        // clear the persistence context, so we don't return the previously cached location object
         // this is a test only thing and normally doesn't need to be done in prod code
         entityManager.clear();
 
-        TicketPrice otherTp = repository.find(tp.getTicketPriceId());
+        TicketPrice otherTp = repository.getOne(tp.getTicketPriceId());
         assertEquals(BigDecimal.valueOf(200, 2), otherTp.getBasePrice());
 
-        repository.delete(otherTp.getTicketPriceId());
+        repository.deleteById(otherTp.getTicketPriceId());
     }
 
+    @Test
+    void jpaNamedQueryTest() {
+        List<TicketPrice> tickets = repository.namedFindTicketsByPricingCategoryName("Regular");
+        assertTrue(tickets.size() > 0);
+    }
 }
