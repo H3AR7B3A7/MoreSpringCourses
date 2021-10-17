@@ -355,6 +355,66 @@ WHERE a.firstname = ?1 limit 5
 SELECT DISTINCT WHERE a.firstname = ?1
 ```
 
+## @Query
+
+- Reuse existing JPQL
+- Advanced queries
+- Eager loading control
+
+### Named Parameters
+
+```java
+@Query("SELECT tp FROM TicketPrice tp WHERE tp.basePrice < :maxprice " +
+        "AND tp.ticketType.includesWorkshop = TRUE")
+List<TicketPrice> getTicketsUnderPriceWithWorkshops(BigDecimal maxPrice);
+```
+
+### Enhanced JPQL Syntax
+
+```java
+@Query("SELECT s FROM Sessions s WHERE s.sessionName LIKE %?1")
+List<TicketPrice> getSessionsWithName(String name);
+```
+
+### Native SQL Queries
+
+```java
+@Query(value= "SELECT * FROM Sessions s WHERE s.session_name = ?0", nativeQuery = true)
+List<TicketPrice> getSessionsWithName(String name);
+```
+*A drawback is that this will make your code dependent on the database implementation.*
+
+### Modifiable Queries
+
+```java
+@Modifying
+@Query("UPDATE Session s SET s.sessionName = ?1")
+int updateSessionName(String name);
+```
+
+## @NamedQueries
+
+```java
+@Entity
+@NamedQuery(
+        name = "TicketPrice.namedFindTicketsByPricingCategoryName",
+        query = "SELECT tp FROM TicketPrice tp WHERE tp.pricingCategory.pricingCategoryName = :name"
+)
+public class TicketPrice{
+    // ...
+}
+```
+Or:
+```java
+@Query(name = "TicketPrice.namedFindTicketsByPricingCategoryName")
+List<TicketPrice> getTicketsByPricingCategoryName(@Param("name") String name);
+```
+Results in:
+```java
+public interface TicketPriceJpaRepository extends JpaRepository<TicketPrice, Long> {
+    List<TicketPrice> namedFindTicketsByPricingCategoryName(@Param("name") String name);
+}
+```
 
 ---
 Work in progress...
