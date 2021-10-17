@@ -450,5 +450,12 @@ Settle on standards with the team we are working with on the project.
 - Methods that match (native) named query
 - Methods that follow the query DSL keyword naming structure
 
+## Advanced Features
+
+- [Paging & Sorting](src/main/java/com/pluralsight/conferencedemo/repositories/SessionsJpaRepository.java)
+- Custom Repositories
+- Auditing Support
+- Locking
+
 ---
 Work in progress...
