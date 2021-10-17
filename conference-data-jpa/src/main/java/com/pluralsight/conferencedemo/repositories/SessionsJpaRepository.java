@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface SessionsJpaRepository extends JpaRepository<Session, Long> {
+public interface SessionsJpaRepository extends JpaRepository<Session, Long>, CustomSessionJpaRepository {
     
     List<Session> findBySessionNameContains(String name);
     

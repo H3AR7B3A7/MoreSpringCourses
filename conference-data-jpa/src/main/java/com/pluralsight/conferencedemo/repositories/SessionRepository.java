@@ -75,4 +75,8 @@ public class SessionRepository {
     public Page<Session> getSessionsWithName(String name, PageRequest pageRequest) {
         return jpaRepository.getSessionsWithName(name, pageRequest);
     }
+    
+    public List<Session> customGetSessions() {
+        return jpaRepository.customGetSessions();
+    }
 }

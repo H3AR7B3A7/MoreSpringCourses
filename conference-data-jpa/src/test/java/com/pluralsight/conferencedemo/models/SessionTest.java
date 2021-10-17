@@ -55,4 +55,10 @@ public class SessionTest {
         assertTrue(page.getTotalElements() > 0);
         assertTrue(page.getTotalPages() > 0);
     }
+
+    @Test
+    void customRepositoryTest() {
+        List<Session> sessions = repository.customGetSessions();
+        assertTrue(sessions.size() > 0);
+    }
 }
