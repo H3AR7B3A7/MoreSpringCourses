@@ -13,4 +13,9 @@ public class CustomSessionJpaRepositoryImpl implements CustomSessionJpaRepositor
     public List<Session> customGetSessions() {
         return entityManager.createQuery("SELECT s FROM Session s").getResultList();
     }
+
+    @Override
+    public List<String[]> test() {
+        return entityManager.createQuery("SELECT DISTINCT s.sessionName, s.sessionDescription FROM Session s WHERE s.sessionName IS NOT NULL ORDER BY s.sessionName").getResultList();
+    }
 }

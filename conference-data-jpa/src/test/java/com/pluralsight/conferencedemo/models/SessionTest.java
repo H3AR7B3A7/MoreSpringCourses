@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -60,5 +61,11 @@ public class SessionTest {
     void customRepositoryTest() {
         List<Session> sessions = repository.customGetSessions();
         assertTrue(sessions.size() > 0);
+    }
+
+    @Test
+    void testies() {
+        List<String[]> results = repository.test();
+        results.forEach(e -> System.out.println(Arrays.deepToString(e)));
     }
 }

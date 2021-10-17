@@ -79,4 +79,8 @@ public class SessionRepository {
     public List<Session> customGetSessions() {
         return jpaRepository.customGetSessions();
     }
+    
+    public List test() {
+        return jpaRepository.test();
+    }
 }
