@@ -5,10 +5,14 @@ import com.pluralsight.conferencedemo.repositories.SessionsJpaRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.data.domain.Sort.Direction.DESC;
 
 @SpringBootTest
 public class SessionTest {
@@ -43,5 +47,12 @@ public class SessionTest {
     public void jpaLessThanTest() throws Exception {
         List<Session> sessions = repository.findBySessionLengthLessThan(45);
         assertTrue(sessions.size() > 0);
+    }
+
+    @Test
+    void jpaPageableTest() {
+        Page<Session> page = repository.getSessionsWithName("S", PageRequest.of(1, 5, Sort.by(DESC, "sessionLength")));
+        assertTrue(page.getTotalElements() > 0);
+        assertTrue(page.getTotalPages() > 0);
     }
 }

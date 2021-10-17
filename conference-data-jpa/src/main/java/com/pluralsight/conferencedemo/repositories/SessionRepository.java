@@ -2,6 +2,8 @@ package com.pluralsight.conferencedemo.repositories;
 
 import com.pluralsight.conferencedemo.models.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -67,5 +69,10 @@ public class SessionRepository {
 
     public List<Session> findBySessionLengthLessThan(Integer length){
         return jpaRepository.findBySessionLengthLessThan(length);   
+    }
+
+
+    public Page<Session> getSessionsWithName(String name, PageRequest pageRequest) {
+        return jpaRepository.getSessionsWithName(name, pageRequest);
     }
 }
