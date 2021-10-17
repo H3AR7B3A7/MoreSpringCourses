@@ -418,5 +418,37 @@ public interface TicketPriceJpaRepository extends JpaRepository<TicketPrice, Lon
 
 *We can also make named native queries when we set nativeQuery = true.*
 
+## Tips
+
+Three protocols:
+- SQL
+- JPQL
+- Query DSL
+
+Code locations:
+- JPA Entities
+  - @NamedQuery
+  - @NamedNativeQuery
+- Repositories
+  - @NamedQuery
+  - @NamedNativeQuery
+  - @Query
+  - Query DSL
+
+**Where to define our queries?**
+
+There is no right or wrong. Many prefer to keep the queries next to the entity model.
+
+The *data access object pattern* suggests that queries are more appropriate in our JPA repository,
+since data access often extends beyond a singe entity.
+
+Settle on standards with the team we are working with on the project.
+
+## JpaRepository Query Precedence
+
+- Methods with @Query annotation
+- Methods that match (native) named query
+- Methods that follow the query DSL keyword naming structure
+
 ---
 Work in progress...
