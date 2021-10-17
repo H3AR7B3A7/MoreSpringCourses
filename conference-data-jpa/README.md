@@ -453,9 +453,61 @@ Settle on standards with the team we are working with on the project.
 ## Advanced Features
 
 - [Paging & Sorting](src/main/java/com/pluralsight/conferencedemo/repositories/SessionsJpaRepository.java)
-- Custom Repositories
+- [Custom Repositories](src/main/java/com/pluralsight/conferencedemo/repositories/CustomSessionJpaRepositoryImpl.java)
 - Auditing Support
-- Locking
+  - @CreatedBy
+  - @LastModifiedBy
+  - @CreatedDate
+  - @LastModifiedDate
 
----
-Work in progress...
+  ```java
+  @Entity
+  public class Model {
+    @CreatedBy
+    private User user;
+    @CreatedDate
+    private DateTime createdDate;
+    // ...
+  }
+  ```
+  
+  ```java
+  public class SecurityAuditorAware implements AuditorAware<User> {
+    public Optional<User> getCurrentAuditor(){
+        // ...
+      return user;
+    }
+  }
+  ```
+  
+  ```java
+  @Configuration
+  @EnableJpaAuditing
+  public class AuditingConfiguration {
+    @Bean
+    public  AuditorAware<User> auditorProvider() {
+        return new SecurityAuditorAware();
+    }
+  }
+  ```
+
+- Locking
+  - **Optimistic**
+    
+    If version number doesn't match, throws OptimisticLockException.
+  - **Pessimistic**
+  
+    Long term locks the data for the transaction duration, preventing others from accessing the data until the transaction commits
+
+  ```java
+  @Entity
+  public class Model {
+      @Version
+      private int Version;
+  }
+  ```
+  
+  ```java
+  @Lock(LockModeType.PESSIMISTIC_WRITE)
+  List<Model> findByAttributeName(String name);
+  ```
