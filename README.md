@@ -41,6 +41,8 @@
   - [Ride Sharing](ride-sharing/README.md)
 - **Spring Data JPA**, a Pluralsight course by Dan Bunker
   - [Conference App](conference-data-jpa/README.md)
+- **Spring Data JPA with Hibernate**, a Pluralsight course by Bryan Hansen
+  - [Conference App](conference-app-jpa/README.md)
 
 ## DDD & EDD
 
