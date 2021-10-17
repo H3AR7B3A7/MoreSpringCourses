@@ -18,4 +18,7 @@ public interface TicketPriceJpaRepository extends JpaRepository<TicketPrice, Lon
 
     // Named Query: TicketPrice.java
     List<TicketPrice> namedFindTicketsByPricingCategoryName(@Param("name") String name);
+    
+    // Named Native Query: TicketPrice.java
+    List<TicketPrice> nativeFindTicketsByCategoryWithWorkshop(@Param("name") String name);
 }
