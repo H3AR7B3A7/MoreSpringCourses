@@ -1,33 +1,30 @@
 package be.dog.d.steven.conferenceapp.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name = "REGISTRATION")
-public class Registration {
-    
+@Table(name = "COURSE")
+public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
     
-    @NotEmpty
     @Column(name = "NAME")
     private String name;
-
-    @OneToMany(mappedBy = "registration", cascade = CascadeType.ALL)
-    private List<Course> courses = new ArrayList<>();
     
+    @Column(name = "DESCRIPTION")
+    private String description;
+    
+    @ManyToOne
+    private Registration registration;
+
     public Long getId() {
         return id;
     }
@@ -44,11 +41,19 @@ public class Registration {
         this.name = name;
     }
 
-    public List<Course> getCourses() {
-        return courses;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Registration getRegistration() {
+        return registration;
+    }
+
+    public void setRegistration(Registration registration) {
+        this.registration = registration;
     }
 }
