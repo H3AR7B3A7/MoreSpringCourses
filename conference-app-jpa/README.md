@@ -15,6 +15,8 @@ Various configurations:
 
 ### OneToOne
 
+We can find out more [here](https://www.baeldung.com/jpa-one-to-one).
+
 ### OneToMany
 
 ### ManyToOne
