@@ -2,7 +2,7 @@ package be.dog.d.steven.conferenceapp.service;
 
 import be.dog.d.steven.conferenceapp.model.Address;
 import be.dog.d.steven.conferenceapp.model.User;
-import be.dog.d.steven.conferenceapp.repository.UserRepository;
+import be.dog.d.steven.conferenceapp.repository.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository userRepository;
+//    private UserRepository userRepository;
+    private UserJpaRepository userRepository;
 
     @Override
     @Transactional

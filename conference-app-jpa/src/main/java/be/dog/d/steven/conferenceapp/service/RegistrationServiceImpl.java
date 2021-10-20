@@ -4,7 +4,7 @@ import be.dog.d.steven.conferenceapp.model.Course;
 import be.dog.d.steven.conferenceapp.model.Registration;
 import be.dog.d.steven.conferenceapp.model.RegistrationReport;
 import be.dog.d.steven.conferenceapp.repository.CourseRepository;
-import be.dog.d.steven.conferenceapp.repository.RegistrationRepository;
+import be.dog.d.steven.conferenceapp.repository.RegistrationJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +15,9 @@ import java.util.List;
 public class RegistrationServiceImpl implements RegistrationService {
     
     @Autowired
-    private RegistrationRepository registrationRepository;
-    
+//    private RegistrationRepository registrationRepository;
+    private RegistrationJpaRepository registrationRepository;
+
     @Autowired
     private CourseRepository courseRepository;
 
@@ -27,7 +28,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     public List<RegistrationReport> findAllReports() {
-        return registrationRepository.findAllReports();
+//        return registrationRepository.findAllReports();
+        return registrationRepository.registrationReport();
     }
 
     @Override

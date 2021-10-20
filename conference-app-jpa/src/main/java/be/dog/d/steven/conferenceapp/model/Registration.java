@@ -24,7 +24,8 @@ import java.util.List;
 })
 public class Registration {
     
-    public static final String REGISTRATION_REPORT = "registrationReport";
+//    public static final String REGISTRATION_REPORT = "registrationReport";
+    public static final String REGISTRATION_REPORT = "Registration.registrationReport";
     public static final String REGISTRATION_REPORT_JPQL = 
             "SELECT new be.dog.d.steven.conferenceapp.model.RegistrationReport(r.name, c.name, c.description) " +
             "FROM Registration r, Course c " + 
