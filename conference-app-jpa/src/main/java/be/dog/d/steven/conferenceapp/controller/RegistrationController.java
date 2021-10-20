@@ -1,6 +1,7 @@
 package be.dog.d.steven.conferenceapp.controller;
 
 import be.dog.d.steven.conferenceapp.model.Registration;
+import be.dog.d.steven.conferenceapp.model.RegistrationReport;
 import be.dog.d.steven.conferenceapp.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,12 @@ public class RegistrationController {
     public @ResponseBody
     List<Registration> getRegistrations() {
         return registrationService.findAll();
+    }
+
+    @GetMapping("registration-reports")
+    public @ResponseBody
+    List<RegistrationReport> getRegistrationReports() {
+        return registrationService.findAllReports();
     }
 
     @PostMapping("registration")

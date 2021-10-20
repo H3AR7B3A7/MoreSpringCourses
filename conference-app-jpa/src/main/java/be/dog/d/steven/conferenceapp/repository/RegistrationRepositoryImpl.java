@@ -1,6 +1,7 @@
 package be.dog.d.steven.conferenceapp.repository;
 
 import be.dog.d.steven.conferenceapp.model.Registration;
+import be.dog.d.steven.conferenceapp.model.RegistrationReport;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -15,8 +16,15 @@ public class RegistrationRepositoryImpl implements RegistrationRepository {
 
     @Override
     public List<Registration> findAll() {
-        String sql = "SELECT r FROM Registration r";
-        return (List<Registration>) entityManager.createQuery(sql).getResultList();
+        String jpql = "SELECT r FROM Registration r";
+        return (List<Registration>) entityManager.createQuery(jpql).getResultList();
+    }
+
+    @Override
+    public List<RegistrationReport> findAllReports() {
+        String jpql = "SELECT new be.dog.d.steven.conferenceapp.model.RegistrationReport(r.name, c.name, c.description) " +
+                "FROM Registration r, Course c WHERE r.id = c.registration.id";
+        return (List<RegistrationReport>) entityManager.createQuery(jpql).getResultList();
     }
 
     public Registration save(Registration registration) {

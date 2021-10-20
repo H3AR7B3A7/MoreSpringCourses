@@ -2,6 +2,7 @@ package be.dog.d.steven.conferenceapp.service;
 
 import be.dog.d.steven.conferenceapp.model.Course;
 import be.dog.d.steven.conferenceapp.model.Registration;
+import be.dog.d.steven.conferenceapp.model.RegistrationReport;
 import be.dog.d.steven.conferenceapp.repository.CourseRepository;
 import be.dog.d.steven.conferenceapp.repository.RegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public List<Registration> findAll() {
         return registrationRepository.findAll();
+    }
+
+    @Override
+    public List<RegistrationReport> findAllReports() {
+        return registrationRepository.findAllReports();
     }
 
     @Override
