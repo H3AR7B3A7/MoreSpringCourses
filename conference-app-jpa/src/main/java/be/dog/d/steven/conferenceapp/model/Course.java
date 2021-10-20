@@ -1,5 +1,7 @@
 package be.dog.d.steven.conferenceapp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,6 +24,7 @@ public class Course {
     @Column(name = "DESCRIPTION")
     private String description;
     
+    @JsonBackReference
     @ManyToOne
     private Registration registration;
 

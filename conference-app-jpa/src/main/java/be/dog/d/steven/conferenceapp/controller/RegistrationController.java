@@ -8,8 +8,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class RegistrationController {
@@ -20,6 +22,12 @@ public class RegistrationController {
     @GetMapping("registration")
     public String getRegistration(@ModelAttribute("registration") Registration registration) {
         return "registration";
+    }
+
+    @GetMapping("registrations")
+    public @ResponseBody
+    List<Registration> getRegistrations() {
+        return registrationService.findAll();
     }
 
     @PostMapping("registration")

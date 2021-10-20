@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
     
@@ -16,7 +18,12 @@ public class RegistrationServiceImpl implements RegistrationService {
     
     @Autowired
     private CourseRepository courseRepository;
-    
+
+    @Override
+    public List<Registration> findAll() {
+        return registrationRepository.findAll();
+    }
+
     @Override
     @Transactional
     public Registration addRegistration(Registration registration) {
