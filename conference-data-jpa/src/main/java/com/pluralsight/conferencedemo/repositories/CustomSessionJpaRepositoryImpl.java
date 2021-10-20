@@ -1,5 +1,6 @@
 package com.pluralsight.conferencedemo.repositories;
 
+import com.pluralsight.conferencedemo.models.MyDto;
 import com.pluralsight.conferencedemo.models.Session;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +16,7 @@ public class CustomSessionJpaRepositoryImpl implements CustomSessionJpaRepositor
     }
 
     @Override
-    public List<String[]> test() {
-        return entityManager.createQuery("SELECT DISTINCT s.sessionName, s.sessionDescription FROM Session s WHERE s.sessionName IS NOT NULL ORDER BY s.sessionName").getResultList();
+    public List<MyDto> test() {
+        return entityManager.createQuery("SELECT DISTINCT new com.pluralsight.conferencedemo.models.MyDto(s.sessionName, s.sessionDescription) FROM Session s WHERE s.sessionName IS NOT NULL ORDER BY s.sessionName").getResultList();
     }
 }
