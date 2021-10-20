@@ -37,14 +37,14 @@ public class RegistrationServiceImpl implements RegistrationService {
     public Registration addRegistration(Registration registration) {
         registration = registrationRepository.save(registration);
     
-        if (registration.getId() == null) {
+//        if (registration.getId() == null) {
             Course course = new Course();
             course.setName("Spring");
             course.setDescription("An intro course...");
             course.setRegistration(registration);
 
             courseRepository.save(course);
-        }
+//        }
         return registration;
     }
 }
