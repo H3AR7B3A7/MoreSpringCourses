@@ -29,7 +29,11 @@ public class RegistrationRepositoryImpl implements RegistrationRepository {
     }
 
     public Registration save(Registration registration) {
-        entityManager.persist(registration);
+        if (registration.getId() == null) {
+            entityManager.persist(registration);
+        } else {
+            entityManager.merge(registration);
+        }
         return registration;
     }
 }
