@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -17,7 +19,16 @@ import java.util.List;
 
 @Entity
 @Table(name = "REGISTRATION")
+@NamedQueries({
+        @NamedQuery(name = Registration.REGISTRATION_REPORT, query = Registration.REGISTRATION_REPORT_JPQL)
+})
 public class Registration {
+    
+    public static final String REGISTRATION_REPORT = "registrationReport";
+    public static final String REGISTRATION_REPORT_JPQL = 
+            "SELECT new be.dog.d.steven.conferenceapp.model.RegistrationReport(r.name, c.name, c.description) " +
+            "FROM Registration r, Course c " + 
+            "WHERE r.id = c.registration.id";
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

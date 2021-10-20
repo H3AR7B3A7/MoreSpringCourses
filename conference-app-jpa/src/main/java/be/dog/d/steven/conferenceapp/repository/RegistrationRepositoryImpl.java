@@ -22,9 +22,10 @@ public class RegistrationRepositoryImpl implements RegistrationRepository {
 
     @Override
     public List<RegistrationReport> findAllReports() {
-        String jpql = "SELECT new be.dog.d.steven.conferenceapp.model.RegistrationReport(r.name, c.name, c.description) " +
-                "FROM Registration r, Course c WHERE r.id = c.registration.id";
-        return (List<RegistrationReport>) entityManager.createQuery(jpql).getResultList();
+//        String jpql = "SELECT new be.dog.d.steven.conferenceapp.model.RegistrationReport(r.name, c.name, c.description) " +
+//                "FROM Registration r, Course c WHERE r.id = c.registration.id";
+//        return (List<RegistrationReport>) entityManager.createQuery(jpql).getResultList();
+        return (List<RegistrationReport>) entityManager.createNamedQuery(Registration.REGISTRATION_REPORT).getResultList();
     }
 
     public Registration save(Registration registration) {
