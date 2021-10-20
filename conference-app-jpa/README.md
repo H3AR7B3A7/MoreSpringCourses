@@ -28,3 +28,11 @@ We can find out more [here](https://www.baeldung.com/hibernate-one-to-many).
 ### ManyToMany
 
 We can find out more [here](https://www.baeldung.com/jpa-many-to-many).
+
+## JPQL
+
+## FetchType
+
+## Projection
+
+## (Spring Data JPA)
