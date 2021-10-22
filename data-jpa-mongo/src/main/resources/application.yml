@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: airportmanagement
+      username: root
+      password: pass
+#      uri: mongodb://root:pass@mongo:27017/airportmanagement # SHORT HAND
