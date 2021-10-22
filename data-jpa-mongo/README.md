@@ -36,3 +36,23 @@
 - Mongo server port
 - Database name
 - Credentials
+
+## Query Execution
+
+- Without indexes
+  - Collection scan, each document is evaluated
+  - Slow searches
+  - Fast inserts & updates
+- With indexes
+  - Does not scan every document in collection
+  - Fast searches
+  - Slow inserts & updates
+
+## Filter Operators
+
+- is / ne (is, not equals)
+- lt / lte (less than, less tha, equals)
+- gt / gte (greater than, greater than equals)
+- in (value in list)
+- exists (has value)
+- regex (fits pattern)
