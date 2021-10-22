@@ -3,39 +3,48 @@ package be.dog.d.steven.airportmanagement.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Document("flights")
 public class FlightInformation {
     @Id
     private String id;
+
+    @Indexed(unique = true)
+    private String internalId;
+
     @Field("departure")
-    @Indexed
+    @TextIndexed
     private String departureCity;
+
     @Field("destination")
-    @Indexed
+    @TextIndexed
     private String destinationCity;
-    private FlightType flightType;
+
+    @TextIndexed(weight = 2)
+    private String description;
+
+    private FlightType type;
     private boolean isDelayed;
     private int durationMin;
     private LocalDate departureDate;
     private Aircraft aircraft;
+
     @Transient
     private LocalDate createdAt;
 
     public FlightInformation() {
         this.createdAt = LocalDate.now();
+        this.internalId = UUID.randomUUID().toString();
     }
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getDepartureCity() {
@@ -54,12 +63,12 @@ public class FlightInformation {
         this.destinationCity = destinationCity;
     }
 
-    public FlightType getFlightType() {
-        return flightType;
+    public FlightType getType() {
+        return type;
     }
 
-    public void setFlightType(FlightType flightType) {
-        this.flightType = flightType;
+    public void setType(FlightType type) {
+        this.type = type;
     }
 
     public boolean isDelayed() {
@@ -98,7 +107,15 @@ public class FlightInformation {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
+    public String getInternalId() {
+        return internalId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

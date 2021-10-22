@@ -7,3 +7,9 @@ spring:
       username: root
       password: pass
 #      uri: mongodb://root:pass@mongo:27017/airportmanagement # SHORT HAND
+
+logging:
+  level:
+    org.springframework: ERROR
+    org.springframework.data.mongodb.coreMongoTemplate: DEBUG
+    root: ERROR
