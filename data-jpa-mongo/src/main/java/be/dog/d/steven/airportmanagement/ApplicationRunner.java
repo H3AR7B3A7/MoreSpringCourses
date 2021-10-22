@@ -33,7 +33,7 @@ public class ApplicationRunner implements CommandLineRunner {
         System.out.println("------\nQUERY: USING A 737 AIRCRAFT");
         FlightPrinter.print(queries.findByAircraft("737"));
 
-//        System.out.println("-----\nQUERY: FREE TEXT SEARCH: Rome");
-//        FlightPrinter.print(queries.findByFreeText("Rome")); // WTF IS WRONG WITH THIS????
+        System.out.println("-----\nQUERY: FREE TEXT SEARCH: Rome");
+        FlightPrinter.print(queries.findByFreeText("Rome")); // Property: auto-index-creation
     }
 }

@@ -6,6 +6,7 @@ spring:
       database: airportmanagement
       username: root
       password: pass
+      auto-index-creation: true
 #      uri: mongodb://root:pass@mongo:27017/airportmanagement # SHORT HAND
 
 logging:
