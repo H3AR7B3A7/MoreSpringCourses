@@ -103,3 +103,16 @@ Custom converter:
 - Create write converter
 - Create read converter
 - Register converters as a Spring bean
+
+## MongoRepository Interface
+
+- Interface: Repository
+- Interface: CrudRepository
+- Interface: PagingAndSortingRepository
+- Interface: MongoRepository
+- Interface: MyCustomRepository (Our own abstraction using IoC)
+
+#
+
+---
+Project under construction...
