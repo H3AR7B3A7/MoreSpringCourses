@@ -16,6 +16,6 @@ public class QueriesTest {
 
     @Test
     void getDestinationFieldTest() {
-        assertThat(queries.getDepartureCityForId("61742ba83c581136098a3bb8")).isEqualTo("New York");
+        assertThat(queries.getDepartureCityForId("61743c151c01a62cf4006379")).isEqualTo("New York");
     }
 }

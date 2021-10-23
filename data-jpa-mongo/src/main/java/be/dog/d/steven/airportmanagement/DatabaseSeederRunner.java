@@ -17,7 +17,8 @@ import java.util.List;
 @Component
 @Order(1)
 @ConditionalOnProperty(
-        value="seeder.enabled",
+        prefix = "airport",
+        value = "seeding.enabled",
         havingValue = "true",
         matchIfMissing = true)
 public class DatabaseSeederRunner implements CommandLineRunner {

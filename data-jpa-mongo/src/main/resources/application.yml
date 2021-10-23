@@ -15,5 +15,6 @@ logging:
     org.springframework: ERROR
     org.springframework.data.mongodb.core.MongoTemplate: DEBUG
 
-seeder:
-  enabled: true
+airport:
+  seeding:
+    enabled: true
