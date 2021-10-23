@@ -91,4 +91,11 @@ public class FlightInformationQueries {
     public void createEmptyFlight() {
         mongoTemplate.save(new FlightInformation());
     }
+
+    public String getDepartureCityForId(String id) {
+        Query byStreetId = Query.query(
+                Criteria.where("_id").is(id));
+        byStreetId.fields().include("departure");
+        return mongoTemplate.find(byStreetId, FlightInformation.class).get(0).getDepartureCity();
+    }
 }

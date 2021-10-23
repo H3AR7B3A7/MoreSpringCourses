@@ -4,6 +4,7 @@ import be.dog.d.steven.airportmanagement.domain.Aircraft;
 import be.dog.d.steven.airportmanagement.domain.FlightInformation;
 import be.dog.d.steven.airportmanagement.domain.FlightType;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
@@ -15,6 +16,10 @@ import java.util.List;
 
 @Component
 @Order(1)
+@ConditionalOnProperty(
+        value="seeder.enabled",
+        havingValue = "true",
+        matchIfMissing = true)
 public class DatabaseSeederRunner implements CommandLineRunner {
     private final MongoTemplate mongoTemplate;
 
