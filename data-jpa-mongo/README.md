@@ -56,3 +56,50 @@
 - in (value in list)
 - exists (has value)
 - regex (fits pattern)
+
+## Insert Process
+
+Persisting a Document
+- Create collection if it doesn't exist
+- Generate ID if not present
+- Save single document atomically
+
+**Single Document transactions**:
+
+*An operation on a single document is atomic. Because relationships are embedded in a single document,
+this mostly eliminates the need for multi-document transactions.*
+
+**Multi-Document transactions**:
+
+*For situations that require atomicity to multiple documents (in single or multiple collections),
+Mongo 4+ supports multi document transactions. However, we should avoid this where possible.*
+
+- Insert has batch operation support. (e.g.: insertAll(List<>))
+
+## Save / Update
+
+*Save can also insert, but we should use it only to update.*
+
+Save:
+- Save completely overwrites the original document if the id already exists, never just one field.
+- Save does **not** have batch operation support.
+
+Update:
+- Update only affects the fields defined in the update definition, not the whole document.
+- Update has batch operation support.
+
+## Delete
+
+Deleting documents:
+- Single
+- Multi
+- All
+
+## Mongo Converter
+
+*Is a feature used for mapping all Java types to/from DBObjects when storing or retrieving these objects.*
+
+Custom converter:
+- Create write converter
+- Create read converter
+- Register converters as a Spring bean
