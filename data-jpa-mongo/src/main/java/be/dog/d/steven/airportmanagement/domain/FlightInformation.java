@@ -15,6 +15,7 @@ public class FlightInformation {
     @Id
     private String id;
 
+    @SuppressWarnings("FieldMayBeFinal")
     @Indexed(unique = true)
     private String internalId;
 
@@ -29,14 +30,17 @@ public class FlightInformation {
     @TextIndexed(weight = 2)
     private String description;
 
+    @Field("duration")
+    private int durationMin;
+    
+    private LocalDate departureDate;
+    
     private FlightType type;
     private boolean isDelayed;
-    private int durationMin;
-    private LocalDate departureDate;
     private Aircraft aircraft;
 
     @Transient
-    private LocalDate createdAt;
+    private final LocalDate createdAt;
 
     public FlightInformation() {
         this.createdAt = LocalDate.now();

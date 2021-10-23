@@ -16,7 +16,7 @@ import java.util.List;
 @Component
 @Order(1)
 public class DatabaseSeederRunner implements CommandLineRunner {
-    private MongoTemplate mongoTemplate;
+    private final MongoTemplate mongoTemplate;
 
     public DatabaseSeederRunner(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;

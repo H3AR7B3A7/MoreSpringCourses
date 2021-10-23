@@ -11,6 +11,6 @@ spring:
 
 logging:
   level:
-    org.springframework: ERROR
-    org.springframework.data.mongodb.coreMongoTemplate: DEBUG
     root: ERROR
+    org.springframework: ERROR
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG

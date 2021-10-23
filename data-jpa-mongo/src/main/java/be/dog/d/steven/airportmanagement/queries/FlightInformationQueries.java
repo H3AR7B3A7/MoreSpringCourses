@@ -47,10 +47,10 @@ public class FlightInformationQueries {
     
     public List<FlightInformation> findByDurationBetween(int minMinutes, int maxMinutes) {
         Query byDurationBetween = Query
-                .query(Criteria.where("durationMin")
+                .query(Criteria.where("duration")
                         .gte(minMinutes)
                         .lte(maxMinutes))
-                .with(Sort.by(Sort.Direction.DESC, "durationMin"));
+                .with(Sort.by(Sort.Direction.DESC, "duration"));
         return mongoTemplate.find(byDurationBetween, FlightInformation.class);
                 
     }
@@ -88,7 +88,7 @@ public class FlightInformationQueries {
         return this.mongoTemplate.find(byFreeText, FlightInformation.class);
     }
     
-    public void createOne() {
+    public void createEmptyFlight() {
         mongoTemplate.save(new FlightInformation());
     }
 }
