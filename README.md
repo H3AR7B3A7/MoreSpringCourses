@@ -46,6 +46,7 @@
 - **Spring Data MongoDB**, a Pluralsight course by Dan Geabunea
   - [Airport Management MongoTemplate](data-jpa-mongo/README.md)
   - [Airport Management MongoRepository](data-jpa-mongo-repository/README.md)
+  - [Airport Management Document References](data-jpa-mongo-references/README.md)
 
 ## DDD & EDD
 
