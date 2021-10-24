@@ -1,0 +1,3 @@
+airport:
+  seeding:
+    enabled: false
