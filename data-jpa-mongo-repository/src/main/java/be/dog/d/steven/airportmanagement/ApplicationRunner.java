@@ -2,69 +2,75 @@ package be.dog.d.steven.airportmanagement;
 
 import be.dog.d.steven.airportmanagement.domain.FlightInformation;
 import be.dog.d.steven.airportmanagement.domain.FlightPrinter;
-import be.dog.d.steven.airportmanagement.queries.FlightInformationQueries;
+import be.dog.d.steven.airportmanagement.repository.FlightInformationRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
+@SuppressWarnings("SameParameterValue")
 @Service
 @Order(2)
 public class ApplicationRunner implements CommandLineRunner {
+    private final FlightInformationRepository repository;
 
-    private final FlightInformationQueries queries;
-    private final MongoTemplate mongoTemplate;
-
-    public ApplicationRunner(FlightInformationQueries queries, MongoTemplate mongoTemplate) {
-        this.queries = queries;
-        this.mongoTemplate = mongoTemplate;
+    public ApplicationRunner(FlightInformationRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public void run(String... args) throws Exception {
-//        queries.createEmptyFlight();
+    public void run(String... args) {
+        printById("4d23fd8b-47a7-45f8-958c-94d0e21488b2");
 
-        System.out.println("------\nQUERY: ALL FLIGHTS ORDERED BY DEPARTURE");
-        FlightPrinter.print(queries.findAllFlights("departure", 0, 3));
+        delayFlight("4d23fd8b-47a7-45f8-958c-94d0e21488b2", 30);
 
-        System.out.println("------\nQUERY: DEPART AT NEW YORK");
-        FlightPrinter.print(queries.findByDeparture("New York"));
+        removeFlight("4d23fd8b-47a7-45f8-958c-94d0e21488b2");
 
-        System.out.println("------\nQUERY: DELAY DEPARTURE AT GIVEN MADRID");
-        FlightPrinter.print(queries.findDelayedAtDeparture("Madrid"));
+        printByDepartureAndDestination("Madrid", "Barcelona");
 
-        System.out.println("------\nQUERY: DURATION BETWEEN 60 AND 120 MINUTES");
-        FlightPrinter.print(queries.findByDurationBetween(60, 120));
-
-        System.out.println("------\nQUERY: USING A 737 AIRCRAFT");
-        FlightPrinter.print(queries.findByAircraft("737"));
-
-        System.out.println("-----\nQUERY: FREE TEXT SEARCH: Rome");
-        FlightPrinter.print(queries.findByFreeText("Rome")); // Property: auto-index-creation
-        
-        markAllFlightsToRomeAsDelayed();
-        removeFlightsWithDurationLessThanTwoHours();
+        printByMinNbSeats(200);
     }
 
-    private void removeFlightsWithDurationLessThanTwoHours() {
-        Query lessThanTwoHours = Query.query(
-                Criteria.where("duration").lt(120)
-        );
-        mongoTemplate.findAllAndRemove(lessThanTwoHours, FlightInformation.class);
+    private void printById(String id) throws IllegalArgumentException {
+        System.out.println("Flight " + id);
+
+        Optional<FlightInformation> flight = this.repository
+                .findById(id);
+        FlightPrinter.print(List.of(flight.orElseThrow(IllegalArgumentException::new)));
     }
 
-    private void markAllFlightsToRomeAsDelayed() {
-        Query departingFromRome = Query.query(
-                Criteria.where("destination").is("Rome")
-        );
-        Update setDelayed = Update.update("isDelayed", true);
-        mongoTemplate.updateMulti(
-                departingFromRome,
-                setDelayed,
-                FlightInformation.class
-        );
+    private void delayFlight(String id, int duration) {
+        Optional<FlightInformation> optional = this.repository
+                .findById(id);
+        FlightInformation flight = optional.orElseThrow(IllegalArgumentException::new);
+        flight.setDurationMin(flight.getDurationMin() + duration);
+
+        this.repository.save(flight);
+        System.out.println("Updated flight " + id + "\n");
+    }
+
+    private void removeFlight(String id) {
+        this.repository.deleteById(id);
+        System.out.println("Deleted flight " + id + "\n");
+    }
+
+    private void printByDepartureAndDestination(String dep, String dst) {
+        System.out.println("Flights from " + dep + " to " + dst);
+
+        List<FlightInformation> flights = this.repository
+                .findByDepartureCityAndDestinationCity(dep, dst);
+
+        FlightPrinter.print(flights);
+    }
+
+    private void printByMinNbSeats(int minNbSeats) {
+        System.out.println("Flights by min nb seats " + minNbSeats);
+
+        List<FlightInformation> flights = this.repository
+                .findByMinAircraftNbSeats(200);
+
+        FlightPrinter.print(flights);
     }
 }
