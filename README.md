@@ -44,7 +44,8 @@
 - **Spring Data JPA with Hibernate**, a Pluralsight course by Bryan Hansen
   - [Conference App](conference-app-jpa/README.md)
 - **Spring Data MongoDB**, a Pluralsight course by Dan Geabunea
-  - [Airport Management](data-jpa-mongo/README.md)
+  - [Airport Management MongoTemplate](data-jpa-mongo/README.md)
+  - [Airport Management MongoRepository](data-jpa-mongo-repository/README.md)
 
 ## DDD & EDD
 
