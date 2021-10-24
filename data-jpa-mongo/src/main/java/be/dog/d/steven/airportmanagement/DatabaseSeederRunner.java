@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-@Order(1) // This runs first, and will be overridden by DatabaseSeederRunner2.
+@Order(1)
 @ConditionalOnProperty(
         prefix = "airport",
         value = "seeding.enabled",
