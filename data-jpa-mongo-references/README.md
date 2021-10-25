@@ -85,3 +85,11 @@ public class DBChangeLog001 {
     }
 }
 ```
+
+We can go [here](https://github.com/mongobee/mongobee) for more information and examples.
+
+Other options:
+- Liquibase MongoDB Extension
+  - [Example project](https://github.com/alexandru-slobodcicov/liquibase-nosql-quickstart)
+- Mongock
+  - [Example project](https://github.com/cloudyrock/mongock-integration-tests/tree/master/mongock-spring-v5/mongock-spring5-springdata3-it)
