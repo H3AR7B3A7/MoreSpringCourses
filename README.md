@@ -47,6 +47,7 @@
   - [Airport Management MongoTemplate](data-jpa-mongo/README.md)
   - [Airport Management MongoRepository](data-jpa-mongo-repository/README.md)
   - [Airport Management Document References](data-jpa-mongo-references/README.md)
+  - [Airport Management Mongobee](data-jpa-mongobee/README.md)
 
 ## DDD & EDD
 
