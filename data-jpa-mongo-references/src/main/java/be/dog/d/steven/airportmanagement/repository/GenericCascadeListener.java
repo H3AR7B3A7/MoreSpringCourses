@@ -1,7 +1,5 @@
 package be.dog.d.steven.airportmanagement.repository;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mapping.MappingException;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener;
@@ -9,11 +7,9 @@ import org.springframework.data.mongodb.core.mapping.event.BeforeConvertEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
-import java.lang.reflect.Field;
-
 @Component
 public class GenericCascadeListener extends AbstractMongoEventListener<Object> {
-    private MongoTemplate mongoTemplate;
+    private final MongoTemplate mongoTemplate;
 
     public GenericCascadeListener(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;

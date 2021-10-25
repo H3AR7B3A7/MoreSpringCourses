@@ -82,19 +82,19 @@ public class DatabaseSeederRunner implements CommandLineRunner {
         flightTwo.setDurationMin(600);
         flightTwo.setAircraft(new Aircraft("747", 300));
 
-        // Seed
-        List<Airport> airports = Arrays.asList(
-                copenhagen,
-                paris,
-                rome
-        );
+        // Seed - Replaced by FlightCascadeEventListener
+//        List<Airport> airports = Arrays.asList(
+//                copenhagen,
+//                paris,
+//                rome
+//        );
 
         List<FlightInformation> flights = Arrays.asList(
                 flightOne,
                 flightTwo
         );
         
-        airportRepository.insert(airports);
+//        airportRepository.insert(airports);
         flightRepository.insert(flights);
 
         // Print
