@@ -1,13 +1,13 @@
 spring:
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: airportmanagement
-      username: root
-      password: pass
+#      host: localhost
+#      port: 27017
+#      database: airportmanagement
+#      username: root
+#      password: pass
       auto-index-creation: true
-#      uri: mongodb://root:pass@mongo:27017/airportmanagement # SHORT HAND
+      uri: mongodb://root:pass@localhost:27017/airportmanagement # SHORT HAND
 
 logging:
   level:
@@ -18,3 +18,8 @@ logging:
 airport:
   seeding:
     enabled: true
+
+app:
+  db:
+    migrations:
+      enabled: true
