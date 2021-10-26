@@ -12,15 +12,24 @@ Mongo Documents vs Java Objects:
 Implementation options:
 - Manual migrations using scripts (to be avoided at all cost)
 - Create migration component ourselves
-    - Version detection (& automatic upgrade)
-    - Simple configuration
-    - Logging
+    - Needs
+      - Version detection (& automatic upgrade)
+      - Simple configuration
+      - Logging
+    - Pro
+      - Complete control
+      - Can meet every aspect of our needs
+    - Con
+      - Requires more time to develop
+      - Is not trivial to create
 - Use an existing migration framework
     - Pro
         - Saves time
         - Increased focus on the application domain
     - Con
-        - Not fully under our control
+        - The data migration process is not fully under our control
+        - Some applications need more features than frameworks offer
+
 
 ### Mongobee
 
@@ -55,7 +64,8 @@ public class DBChangeLog001 {
 
 We can go [here](https://github.com/mongobee/mongobee) for more information and examples.
 
-Other options:
+### Other Options
+
 - Liquibase MongoDB Extension
     - [Example project](https://github.com/alexandru-slobodcicov/liquibase-nosql-quickstart)
 - Mongock
