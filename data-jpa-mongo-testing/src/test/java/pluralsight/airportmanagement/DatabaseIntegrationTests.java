@@ -9,9 +9,11 @@ import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoCo
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import pluralsight.airportmanagement.db.AirportRepository;
 import pluralsight.airportmanagement.db.FlightInformationRepository;
+import pluralsight.airportmanagement.db.GenericCascadeListener;
 import pluralsight.airportmanagement.domain.Aircraft;
 import pluralsight.airportmanagement.domain.Airport;
 import pluralsight.airportmanagement.domain.FlightInformation;
@@ -26,7 +28,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DataMongoTest
 @ExtendWith(SpringExtension.class)
-@Import(DatabaseTestConfiguration.class)
+//@Import(DatabaseTestConfiguration.class)
+@Import(GenericCascadeListener.class)
+@ActiveProfiles("test")
 class DatabaseIntegrationTests {
     @Autowired
     private MongoTemplate mongoTemplate;

@@ -9,7 +9,7 @@ import org.springframework.util.ReflectionUtils;
 
 @Component
 public class GenericCascadeListener extends AbstractMongoEventListener<Object> {
-    private MongoTemplate mongoTemplate;
+    private final MongoTemplate mongoTemplate;
 
     public GenericCascadeListener(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
