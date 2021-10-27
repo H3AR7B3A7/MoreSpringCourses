@@ -49,6 +49,11 @@
   - [Airport Management Document References](data-jpa-mongo-references/README.md)
   - [Airport Management Mongobee](data-jpa-mongobee/README.md)
 
+## Security
+
+- **Securing Spring Applications against Common Security Threats**, a Pluralsight course by Wojciech Lesniak
+  - [Crypto Portfolio](crypto-portfolio/README.md)
+
 ## DDD & EDD
 
 - **Domain Driven Design & Event Driven Design**, an example project structure by me
