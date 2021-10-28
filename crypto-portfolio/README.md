@@ -93,3 +93,33 @@ Spring Security adds a layer of filters in the servlet container before the Disp
 - ...
 
 *The provider will return an Authenticated Principal Object, for the Authentication Filter to store in the Security Context, where it can be retrieved by other filter lower down the filter chain.*
+
+## Form & Basic Authentication
+By default Spring implements form authentication. It's a simple form creating a POST request to the /login endpoint, with the username and password in the body.
+
+With basic authentication a concatenation of username:password is transmitted via the header. It is base64 encoded to encode non http-compatible characters. It doesn't add any extra security, because it is easily decoded.
+
+>curl http://localhost:8080/endpoint -H "Authorization: Basic c3RldmVuOnBhc3N3b3Jk"
+
+[Encode / Decode Base64](https://www.base64encode.org/)
+
+### Overwriting Default Configuration
+By default SpringBootWebSecurityConfiguration configures both form and basic authentication. We can overwrite the defaults by creating our own implementation of WebSecurityConfigurerAdapter.
+
+```java
+@Configuration  
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {  
+ @Override  
+ protected void configure(HttpSecurity http) throws Exception {  
+ http  
+        .authorizeRequests()  
+        .anyRequest()  
+        .authenticated()  
+        .and()  
+        .httpBasic();  
+    }   
+}
+```
+
+## Multiple Filter Chains
+The DelegatingFilterProxy will iterate through all the available filter chains. To do this it needs the order and the RequestMatcher of each FilterChain. The default order of the filter chain is '100' and 2 filter chains can't have the same order. 
