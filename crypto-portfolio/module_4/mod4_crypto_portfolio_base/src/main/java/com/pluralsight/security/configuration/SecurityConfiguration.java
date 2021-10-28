@@ -11,13 +11,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .mvcMatchers("/login").permitAll()
-                .mvcMatchers("/support/admin").hasRole("ADMIN")
-                .anyRequest()
-                .authenticated()
+                    .mvcMatchers("/login").permitAll()
+                    .mvcMatchers("/support/admin").hasRole("ADMIN")
+                    .anyRequest()
+                        .authenticated()
                 .and()
-//                .httpBasic();
-                .formLogin().loginPage("/login");
+                    .httpBasic();
+//                    .formLogin().loginPage("/login");
     }
 
     @Override
