@@ -128,7 +128,12 @@ The DelegatingFilterProxy will iterate through all the available filter chains. 
 By default, Spring Security will include a lot of headers in responses to clients. These instruct the browser on how to communicate more securely with the application. They are added by the header filter, which we can also customize.
 
 ### Cache Control Header
-By default, Spring tells the browser to block all caching to prevent identity theft.
+By default, Spring Security tells the browser to block all caching to prevent identity theft, using these headers:
+```
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragme: no-cache
+Expires: 0
+```
 When we do want caching on non-sensitive information, we can disable cachecontrol in the configuration or the controller:
 
 ```java
@@ -148,3 +153,81 @@ public ResponseEntity<BigDecimal> priceOfBtc() {
 		.body(priceService.getCurrentPriceForCrypto("BTC"));
 }
 ```
+
+### Reflected Cross-site Scripting (XSS)
+*Reflected cross-site scripting occurs when an attacker injects browser executable code within a single HTTP response.*
+
+Generally cross-site scripting protection is already enabled in the browser, but it doesn't hurt that Spring also includes this header just in case:
+
+```
+X-XSS-Protection: 1; mode=block 
+```
+
+### MIME Type Sniffing
+*Content sniffing, also known as media type sniffing or MIME sniffing, is the practice of inspecting the content of a byte stream to attempt to deduce the file format of the data within it. Polyglot files, were files that could be interpreted as multiple file types (images / JavaScript) in an attempt to execute scripts in the browser, similar to XSS attacks.*
+
+To prevent the client from trying to determine what the file type is, other than what is declared by the application, Spring Security includes this header:
+```
+X-Content-Type-Options: nosniff
+```
+
+### Cross-Site Request Forgery (CSRF)
+*Cross-site request forgery is an attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated. Because the browser has a cookie stored it would identify malicious requests as coming from the authenticated user.*
+
+Spring Security by default protects against CSRF by using the synchronizer token pattern. When a user logs in to the application the server responds with a cookie and a csrf-token. It then expects both the cookie and the token to be returned for all future requests. The token is application specific and not stored in the browser, so malicious sites have no access to it. it goes without saying that we should not disable the csrf security feature.
+
+### Clickjacking
+To disallow the browser to embed a page inside a frame, iframe or object Spring Security also includes this header:
+```
+X-Frame-Options: DENY
+```
+This is to prevent the user of being tricked into clicking on something in our web application without being aware of it.
+
+We can configure this header to be less restrictive:
+```java
+http.headers().frameoptions().sameOrigin()
+```
+
+## Optional Protection
+### Content Security Policy
+Content security policies are a great way to protect against attacks like cross-site scripting, where compromised CDNs or user-generated content could embed malicious content on the user's page and be executed in their browser.
+
+It uses header like this one:
+```
+content-security-policy: <directive> <source list> ; <directive> <source list>
+```
+
+These allow the web application to notify the users browser about the root sources of specific resources.
+
+We can configure them like this:
+```java
+http.headers().contentSecurityPolicy("script-src: self")
+```
+or:
+```java
+http.headers().contentSecurityPolicy("script-src: http://mydomain...")
+```
+
+### Referrer Policy
+This policy instructs the browser to include the origin of the request.
+```java
+http.headers().referrerPolicy().policy(ReferrerPolicy.ORIGIN)
+```
+
+## Http Firewall
+Ways in which the HTTP firewall protects our application:
+- Enforcing a white-list of HTTP methods
+    - Against verb tampering and cross-site tracing attacks (connect & trace are blocked by default)
+- Protection against URL tampering
+    - Blocks (encoded) percentages, encoded periods / semicolons / forward slashes / double forwards & backslashes
+    - Enforces only principle ASCII characters can be used
+
+![Security Http Firewall](security-http-firewall.png)
+
+Two implementations:
+- StrictHttpFirewall
+- DefaultHttpFirewall
+
+*Contrary to what the name would have you think, Spring by default uses the StrictHttpFirewall implementation.*
+
+We can also create our own bean of the HttpFirewall, for which Spring provides many setter methods to configure it.
