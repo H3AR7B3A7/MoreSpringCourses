@@ -1,5 +1,6 @@
 # Spring Security
-Spring Security is a powerful and highly customizable authentication and access-control framework for Java applications. It is the de-facto standard for securing [[Spring]]-based applications.
+Spring Security is a powerful and highly customizable authentication and access-control framework for Java applications.
+It is the de-facto standard for securing [[Spring]]-based applications.
 
 Advantages:
 - Application layer security, not tied to a specific web-server
@@ -9,7 +10,8 @@ Advantages:
 - Maintained by a large open source community
 - Allows focus on business features
 
-*Due to adoption of security frameworks, vulnerabilities like CSRF (Cross-Site Request Forgery) & XSS(Cross-Site Scripting) are no longer on the OWASP top10.*
+*Due to adoption of security frameworks, vulnerabilities like CSRF (Cross-Site Request Forgery) & XSS(Cross-Site Scripting)
+are no longer on the OWASP top10.*
 
 ## Out of the Box Protection
 - Session Fixation
@@ -58,7 +60,8 @@ Dependency:
 *By default on startup, a user is created named: 'user' and the password is printed in the logs.*
 
 ### Default configurtation
-[[Spring Boot]] will autoconfigure needed beans, but will automatically back of when we configure our own. To accomplish this, among others, it leverages these annotations:
+[[Spring Boot]] will autoconfigure needed beans, but will automatically back of when we configure our own.
+To accomplish this, among others, it leverages these annotations:
 - @ConditionalOnMissingBean
 - @ConditionalOnBean
 - ...
@@ -92,19 +95,23 @@ Spring Security adds a layer of filters in the servlet container before the Disp
 - LdapAuthenticationProvider
 - ...
 
-*The provider will return an Authenticated Principal Object, for the Authentication Filter to store in the Security Context, where it can be retrieved by other filter lower down the filter chain.*
+*The provider will return an Authenticated Principal Object, for the Authentication Filter to store in the Security Context,
+where it can be retrieved by other filter lower down the filter chain.*
 
 ## Form & Basic Authentication
-By default Spring implements form authentication. It's a simple form creating a POST request to the /login endpoint, with the username and password in the body.
+By default Spring implements form authentication. It's a simple form creating a POST request to the /login endpoint,
+with the username and password in the body.
 
-With basic authentication a concatenation of username:password is transmitted via the header. It is base64 encoded to encode non http-compatible characters. It doesn't add any extra security, because it is easily decoded.
+With basic authentication a concatenation of username:password is transmitted via the header. It is base64 encoded to
+encode non http-compatible characters. It doesn't add any extra security, because it is easily decoded.
 
 >curl http://localhost:8080/endpoint -H "Authorization: Basic c3RldmVuOnBhc3N3b3Jk"
 
 [Encode / Decode Base64](https://www.base64encode.org/)
 
 ### Overwriting Default Configuration
-By default, SpringBootWebSecurityConfiguration configures both form and basic authentication. We can overwrite the defaults by creating our own implementation of WebSecurityConfigurerAdapter.
+By default, SpringBootWebSecurityConfiguration configures both form and basic authentication. We can overwrite the
+defaults by creating our own implementation of WebSecurityConfigurerAdapter.
 
 ```java
 @Configuration  
@@ -122,10 +129,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 ```
 
 ## Multiple Filter Chains
-The DelegatingFilterProxy will iterate through all the available filter chains. To do this it needs the order and the RequestMatcher of each FilterChain. The default order of the filter chain is '100' and 2 filter chains can't have the same order. 
+The DelegatingFilterProxy will iterate through all the available filter chains. To do this it needs the order and the
+RequestMatcher of each FilterChain. The default order of the filter chain is '100' and 2 filter chains can't have the same order. 
 
 ## Default Protection
-By default, Spring Security will include a lot of headers in responses to clients. These instruct the browser on how to communicate more securely with the application. They are added by the header filter, which we can also customize.
+By default, Spring Security will include a lot of headers in responses to clients. These instruct the browser on how to
+communicate more securely with the application. They are added by the header filter, which we can also customize.
 
 ### Cache Control Header
 By default, Spring Security tells the browser to block all caching to prevent identity theft, using these headers:
@@ -157,24 +166,34 @@ public ResponseEntity<BigDecimal> priceOfBtc() {
 ### Reflected Cross-site Scripting (XSS)
 *Reflected cross-site scripting occurs when an attacker injects browser executable code within a single HTTP response.*
 
-Generally cross-site scripting protection is already enabled in the browser, but it doesn't hurt that Spring also includes this header just in case:
+Generally cross-site scripting protection is already enabled in the browser, but it doesn't hurt that Spring also
+includes this header just in case:
 
 ```
 X-XSS-Protection: 1; mode=block 
 ```
 
 ### MIME Type Sniffing
-*Content sniffing, also known as media type sniffing or MIME sniffing, is the practice of inspecting the content of a byte stream to attempt to deduce the file format of the data within it. Polyglot files, were files that could be interpreted as multiple file types (images / JavaScript) in an attempt to execute scripts in the browser, similar to XSS attacks.*
+*Content sniffing, also known as media type sniffing or MIME sniffing, is the practice of inspecting the content of a
+byte stream to attempt to deduce the file format of the data within it. Polyglot files, were files that could be
+interpreted as multiple file types (images / JavaScript) in an attempt to execute scripts in the browser,
+similar to XSS attacks.*
 
-To prevent the client from trying to determine what the file type is, other than what is declared by the application, Spring Security includes this header:
+To prevent the client from trying to determine what the file type is, other than what is declared by the application,
+Spring Security includes this header:
 ```
 X-Content-Type-Options: nosniff
 ```
 
 ### Cross-Site Request Forgery (CSRF)
-*Cross-site request forgery is an attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated. Because the browser has a cookie stored it would identify malicious requests as coming from the authenticated user.*
+*Cross-site request forgery is an attack that forces an end user to execute unwanted actions on a web application in
+which they're currently authenticated. Because the browser has a cookie stored it would identify malicious requests
+as coming from the authenticated user.*
 
-Spring Security by default protects against CSRF by using the synchronizer token pattern. When a user logs in to the application the server responds with a cookie and a csrf-token. It then expects both the cookie and the token to be returned for all future requests. The token is application specific and not stored in the browser, so malicious sites have no access to it. it goes without saying that we should not disable the csrf security feature.
+Spring Security by default protects against CSRF by using the synchronizer token pattern. When a user logs in to the
+application the server responds with a cookie and a csrf-token. It then expects both the cookie and the token to be
+returned for all future requests. The token is application specific and not stored in the browser, so malicious sites
+have no access to it. it goes without saying that we should not disable the csrf security feature.
 
 ### Clickjacking
 To disallow the browser to embed a page inside a frame, iframe or object Spring Security also includes this header:
@@ -190,7 +209,8 @@ http.headers().frameoptions().sameOrigin()
 
 ## Optional Protection
 ### Content Security Policy
-Content security policies are a great way to protect against attacks like cross-site scripting, where compromised CDNs or user-generated content could embed malicious content on the user's page and be executed in their browser.
+Content security policies are a great way to protect against attacks like cross-site scripting, where compromised CDNs
+or user-generated content could embed malicious content on the user's page and be executed in their browser.
 
 It uses header like this one:
 ```
@@ -231,3 +251,107 @@ Two implementations:
 *Contrary to what the name would have you think, Spring by default uses the StrictHttpFirewall implementation.*
 
 We can also create our own bean of the HttpFirewall, for which Spring provides many setter methods to configure it.
+
+## HTTPS
+*Http over Transport Layer Security (TLS)*
+
+### Man-in-the-middle Attacks
+Https prevents interception of the authentication request to steal the user's credentials, or the hijacking of the
+user's session by malicious third parties as requests bounce between servers. Without https there is also no way to
+confirm the destination server is who they claim to be.
+
+### TLS & SSL
+TLS is the protocol used by the client and server to initiate encrypted communication between themselves, and a way for
+the client to confirm the identity of the server.
+
+With TLS there is a handshake before any data is transmitted. The client and the server agree on the protocols and
+algorithms they're going to use. Then the server sends its X509 certificate. It contains information about the server.
+
+Secure Sockets Layer (SSL) was the predecessor of TLS.
+
+### Self Signed Certificate
+We can generate a self signed certificate, however in production we should only use a certificate from a certified authority.
+
+To generate the certificate:
+>keytool -genkey -alias tomcat -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12  -validity 400
+
+In project properties:
+```properties
+server.port=8443
+server.ssl.key-store-password=pass
+server.ssl.key-store=classpath:keystore.p12
+server.ssl.key-store-type=PKCS12
+server.ssl.key-alias=tomcat
+```
+*To be truly secure, we would not want this information to be in plain text inside our code. When the server is breached,
+or the source code or release artifact get leaked this information would be up for grabs.*
+
+We can now connect via https, but we will get a warning from the browser that it can not verify the server is who they say they are.
+
+To redirect HTTP requests to port 80 we can send a redirect response to the user. Spring boot only allows to configure
+one connector via the properties, which we now already use for HTTPS requests on port 443. We can create a bean by
+accessing the TomcatServletWebServerFactory to help us out:
+
+```java
+@Bean
+public ServletWebServerFactory servletContainer() {
+	TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
+		@Override
+		protected void postProcessContext(Context context) {
+			SecurityConstraint securityConstraint = new SecurityConstraint();
+			securityConstraint.setUserConstraint("CONFIDENTIAL");
+			SecurityCollection collection = new SecurityCollection();
+			collection.addPattern("/*");
+			securityConstraint.addCollection(collection);
+			context.addConstraint(securityConstraint);
+		}
+	};
+	tomcat.addAdditionalTomcatConnectors(redirectConnector());
+	return tomcat;
+}
+
+private Connector redirectConnector() {
+	Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+	connector.setScheme("http");
+	connector.setPort(80);
+	connector.setRedirectport(443);
+	return connector;
+}
+```
+
+### Http Strict-Transport-Security (HSTS) Header
+The initial redirect request and response are still via HTTP, and thus still susceptible to a Man-in-the-middle attack.
+A hacker can intercept the response from the server and inject malicious scripts or change the redirect to their ow site
+by changing the header. This is even rather simple for them using tools like **Wifi Pineapple**.
+Once a user has connected to some wifi network, their device will automatically try to reconnect through probe requests,
+continuously looking for these networks. Pineapple can detect these probes and masquerade as the exact same SSID,
+tricking the device into connecting to it. At this point the user is using the DNS server of the device and the hacker
+can then use DNS spoofing. Most users would not notice they are not on a HTTPS secured web page and could share their
+information with the hacker through a web interface looking exactly like one of their trusted websites.
+
+To prevent this Spring Security again by default adds a HSTS Header:
+
+```
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+```
+
+It informs the browser that our website requires HTTPS. The browser will cache this and use HTTPS for all subsequent requests.
+
+### Free Trusted Certificate
+With **Let's Encrypt** we can get a domain validation certificate for free, so users don't get the annoying warning and
+can have the confidence that the server they are connecting to actually owns the domain.
+
+### ACME
+*Automated Certificate Management Environment protocol*
+
+Used to verify that we control the domain address being used without any human intervention. We can do this by cloning
+the Certbot from source on Git. The Certbot runs a small web server to communicate with Let's Encrypt to verify that
+we control that server and own the domain. It generates and renews keys for us. We need to make sure that port 80 is
+open for outbound and have Python 2.7 installed.
+
+### Preloaded Hosts List
+This form is used to submit domains for inclusion in Chrome's HTTP Strict Transport Security (HSTS) preload list.
+This is a list of sites that are hard coded into Chrome as being HTTPS only. Most major browsers also have HSTS
+preload lists based on the Chrome list.
+
+This prevents event the initial HTTP request to our domain to be intercepted by malicious third parties.
