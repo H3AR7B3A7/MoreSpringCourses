@@ -363,6 +363,90 @@ We can configure HttpSecurity to either use Http Basic login or a Login Form:
 - Basic: *username:password* in the header
 - Form: *FormData* can hold more than just username and password in the body of a POST request
 
+## Secrets
+
+Examples of secrets:
+- User credentials
+- Database service credentials
+- Keystore passwords
+- API keys
+- ...
+
+*These are often, but should not be hard coded in the code, nor in the properties files.*
+
+We should:
+- Encrypting our secrets within the application
+- Externalize our secrets with Spring Cloud Vault
+- Follow good practices
+  - Auditing
+  - Rotation
+  - Invalidation
+
+### Encrypting
+We can use the [Jasypt library](http://www.jasypt.org/) to encrypt our secrets, which has good Spring support.
+
+Dependency:
+```xml
+<dependency>
+	<groupId>com.github.ulisesbocchio</groupId>
+	<artifactId>jasypt-spring-boot-starter</artifactId>
+</dependency>
+```
+
+Jasypt will encrypt our secrets by using an algorithm and a password. We can use the **encrypt.bat** script to generate the encrypted secret. Then we can provide the encrypted secret in the properties:
+
+```properties
+server.ssl.key-store-password=ENC(RRAFEAfAF5eaf75aeF7aGFEA)
+```
+
+We now only need to provide the algorithm and the password in a secure way.
+
+```properties
+jasypt.encryptor.password=AIDNIFGNEAZOFJ
+jasypt.encryptor.iv-generator-classname=org.jasypt.iv.NoIvGenerator
+jasypt.encryptor.algorithm=PBEWithMD5AndTripleDES
+```
+
+For this we want to use environment variables:
+
+```properties
+jasypt.encryptor.password=${JASYPT_ENCRYPTOR_PASSWORD}
+jasypt.encryptor.iv-generator-classname=org.jasypt.iv.NoIvGenerator
+jasypt.encryptor.algorithm=${JASYPT_ENCRYPTOR_ALGORITHM}
+```
+
+### Secret Management
+Good practices:
+- Fine-grained access to secrets
+- Encryption
+- Automate rotating secrets frequently
+- Auditing by whom, when and why secrets were accessed
+
+#### Secret Sprawl:
+*When we talk about **secret sprawl**, we're really talking about littering our secrets throughout the architecture.*
+
+Common places:
+- Properties files
+- Environment variables
+- Source code
+- Configuration management (Jenkins, Ansible, Bamboo, Puppet...)
+- Source control (Git or SVN) **!!!DANGER!!!**
+
+*We should centralize our secrets into one location and prevent duplication, and provide clients with fine-grained (bare-minimum) access to these secrets.*
+
+### Spring Vault
+Spring Vault is an abstraction around vault by HashiCorp which can provide functionality to implement good Secret management as described above.
+
+Dependency:
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-vault-config</artifactId>
+</dependency>
+```
+
+*Spring Vault also provides support for different Secret backends, like: Consul, RabbitMQ, AWS & different Databases.*
+
 
 ---
 *Work in progress...*
