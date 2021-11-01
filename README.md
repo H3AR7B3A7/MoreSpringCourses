@@ -53,6 +53,9 @@
 
 - **Securing Spring Applications against Common Security Threats**, a Pluralsight course by Wojciech Lesniak
   - [Crypto Portfolio](crypto-portfolio/README.md)
+- **Authenticating Users with Spring Security**, a PluralSight course by Bryan Hansen
+  - [Conference App](conference-security/README.md)
+
 
 ## DDD & EDD
 
