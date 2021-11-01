@@ -357,7 +357,8 @@ preload lists based on the Chrome list.
 This prevents event the initial HTTP request to our domain to be intercepted by malicious third parties.
 
 ## Single Page Web Applications
-When Authenticating single page web applications we can use the a login page provided by the Spring application, but more likely we will want to use the JavaScript framework to handle the login form.
+When Authenticating single page web applications we can use the a login page provided by the Spring application,
+but more likely we will want to use the JavaScript framework to handle the login form.
 
 We can configure HttpSecurity to either use Http Basic login or a Login Form:
 - Basic: *username:password* in the header
@@ -393,7 +394,8 @@ Dependency:
 </dependency>
 ```
 
-Jasypt will encrypt our secrets by using an algorithm and a password. We can use the **encrypt.bat** script to generate the encrypted secret. Then we can provide the encrypted secret in the properties:
+Jasypt will encrypt our secrets by using an algorithm and a password. We can use the **encrypt.bat** script to generate
+the encrypted secret. Then we can provide the encrypted secret in the properties:
 
 ```properties
 server.ssl.key-store-password=ENC(RRAFEAfAF5eaf75aeF7aGFEA)
@@ -432,10 +434,12 @@ Common places:
 - Configuration management (Jenkins, Ansible, Bamboo, Puppet...)
 - Source control (Git or SVN) **!!!DANGER!!!**
 
-*We should centralize our secrets into one location and prevent duplication, and provide clients with fine-grained (bare-minimum) access to these secrets.*
+*We should centralize our secrets into one location and prevent duplication, and provide clients with fine-grained
+(bare-minimum) access to these secrets.*
 
 ### Spring Vault
-Spring Vault is an abstraction around vault by HashiCorp which can provide functionality to implement good Secret management as described above.
+Spring Vault is an abstraction around vault by HashiCorp which can provide functionality to implement good Secret
+management as described above.
 
 Dependency:
 ```xml
@@ -446,6 +450,66 @@ Dependency:
 ```
 
 *Spring Vault also provides support for different Secret backends, like: Consul, RabbitMQ, AWS & different Databases.*
+
+## Authentication & Authorization Exceptions
+
+**Authentication**:  
+AuthenticationFilter -> 401 Unauthorized
+
+**Authorization**:  
+InterceptorFilter -> 403 Forbidden
+
+### Login Errors
+By default Spring redirects the user to the login page with a query parameter:
+
+> localhost:8080/login?error
+
+*We should only provide general messages that credentials were incorrect, to not provide information on the existence
+of any user names.*
+
+We could change the behavior and redirect to another page:
+
+```java
+http
+    .formLogin()
+    .loginPage("/login")
+	.failureUrl("/login_error")
+	.failureHandler(new AuthenticationFailureHandlerImpl())
+	.defaultSuccessUrl("/home")
+```
+
+By creating an implementation of the AuthenticationFailureHandler we can add custom functionality like logging or
+notifying the user by email.
+
+Allthough Spring Security is a good framework, we should prevent providing any information about our security
+implementation to the users. For this reason we might want to disable white label error pages:
+
+```properties
+server.error.whitelabel.enabled=false
+```
+
+Instead, we can provide our own pages in the folder `resources/static/error` and name them `404.html`, or the default
+`error.html`, or write our own error controller.
+
+We can find some more information [here](https://www.baeldung.com/spring-boot-custom-error-page).
+
+### Exception Handling
+We can also do some custom auditing when there are attempts to unauthorized access. We can do this by writing our own
+implementation of the AccessDeniedHandler.
+
+```java
+http
+    .eceptionHandling()
+	.accessDeniedPage("/access_denied")
+	.accessDeniedHandler(new AccessDeniedHandlerImpl())
+```
+
+### Application Exceptions
+
+*Search fields inside the application should always ring some alarm bells. We want to make sure the exceptions thrown
+when the input isn't what we expected don't provide malicious parties with sensitive information, like for instance a
+database back end service. This will leave the application open to common SQL injection attacks.
+Although using prepared statements protect us from these, we should still provide adequate exception handling.*
 
 
 ---
