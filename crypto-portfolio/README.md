@@ -355,3 +355,14 @@ This is a list of sites that are hard coded into Chrome as being HTTPS only. Mos
 preload lists based on the Chrome list.
 
 This prevents event the initial HTTP request to our domain to be intercepted by malicious third parties.
+
+## Single Page Web Applications
+When Authenticating single page web applications we can use the a login page provided by the Spring application, but more likely we will want to use the JavaScript framework to handle the login form.
+
+We can configure HttpSecurity to either use Http Basic login or a Login Form:
+- Basic: *username:password* in the header
+- Form: *FormData* can hold more than just username and password in the body of a POST request
+
+
+---
+*Work in progress...*
