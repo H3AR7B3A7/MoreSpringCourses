@@ -1,6 +1,6 @@
-package be.dog.d.steven.conferencesecurity.controller;
+package com.pluralsight.conference.controller;
 
-import be.dog.d.steven.conferencesecurity.model.Registration;
+import com.pluralsight.conference.model.Registration;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;

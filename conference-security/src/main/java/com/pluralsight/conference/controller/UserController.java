@@ -1,6 +1,6 @@
-package be.dog.d.steven.conferencesecurity.controller;
+package com.pluralsight.conference.controller;
 
-import be.dog.d.steven.conferencesecurity.model.User;
+import com.pluralsight.conference.model.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;

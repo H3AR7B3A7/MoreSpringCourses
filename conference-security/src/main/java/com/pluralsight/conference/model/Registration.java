@@ -1,4 +1,4 @@
-package be.dog.d.steven.conferencesecurity.model;
+package com.pluralsight.conference.model;
 
 import javax.validation.constraints.NotEmpty;
 
