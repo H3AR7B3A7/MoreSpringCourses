@@ -20,3 +20,8 @@ INSERT INTO authorities (username, authority)
 VALUES('user', 'ROLE_USER');
 
 COMMIT;
+
+ALTER TABLE users
+ADD nickname VARCHAR(50);
+
+COMMIT;
