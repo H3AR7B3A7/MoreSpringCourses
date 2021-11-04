@@ -62,6 +62,10 @@ VALUES('user', 'ROLE_USER');
 
 ## LDAP Authentication
 
+*Lightweight Directory Access Protocol (LDAP) is a networkprotocol that describes how to access data from
+directory services over, for example, TCP/IP. LDAP uses the LDAP Data Interchange Format (LDIF).
+This is an ASCII format used to add data to the LDAP hierarchical database.*
+
 Dependencies for embedded LDAP server:
 ```xml
 <dependency>  
