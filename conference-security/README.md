@@ -104,3 +104,75 @@ spring.ldap.embedded.port=8389
 ```
 
 Here is an [Example LDAP Server Configuration](src/main/resources/test-server.ldif).
+
+## Custom Security Object
+
+- We extend the Security Core User object:
+  ```java
+  import org.springframework.security.core.userdetails.User;
+
+  public class ConferenceUserDetails extends User {  
+       private String nickname;
+	 
+       public ConferenceUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities) {  
+         super(username, password, authorities);  
+       }  
+
+       // Getter & Setter
+  }
+  ```
+
+- Context Mapper
+  ```java
+  @Service  
+  public class ConferenceUserDetailsContextMapper implements UserDetailsContextMapper {  
+       private final DataSource dataSource;  
+
+       public ConferenceUserDetailsContextMapper(DataSource dataSource) {  
+           this.dataSource = dataSource;  
+       }  
+
+       private final static String LOAD_USER_BY_USERNAME_QUERY =  
+              "SELECT username, password, enabled, nickname FROM users WHERE username = ?";
+              
+       @Override  
+       public UserDetails mapUserFromContext(
+                      DirContextOperations dirContextOperations,
+                      String s,
+                      Collection<? extends GrantedAuthority> collection) {  
+           JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
+           final ConferenceUserDetails userDetails = new ConferenceUserDetails(  
+               dirContextOperations.getStringAttribute("uid"),  
+               "fake",  
+               Collections.emptyList()  
+           );  
+           jdbcTemplate.queryForObject(LOAD_USER_BY_USERNAME_QUERY, new RowMapper<ConferenceUserDetails>() {  
+               @Override  
+               public ConferenceUserDetails mapRow(ResultSet resultSet, int i) throws SQLException {  
+                   userDetails.setNickname(resultSet.getString("nickname"));  
+                   return userDetails;  
+               }  
+           }, dirContextOperations.getStringAttribute("uid"));  
+           return userDetails;  
+       }  
+
+       @Override  
+       public void mapUserToContext(UserDetails userDetails, DirContextAdapter dirContextAdapter) { }  
+  }
+  ```
+
+- In `WebSecurityConfigurerAdapter` we wire in the bean and add it to our configurations:
+  ```java
+  @Autowired  
+  private ConferenceUserDetailsContextMapper ctxMapper;
+
+  // ...
+
+  @Override  
+  protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+  	  auth  
+    	  // ...
+ 		  .and()  
+ 		  .userDetailsContextMapper(ctxMapper);
+  }
+  ```
