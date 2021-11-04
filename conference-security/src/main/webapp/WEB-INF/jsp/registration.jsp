@@ -32,7 +32,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <a class="navbar-brand" href="#">Get Started</a>
+        <a class="navbar-brand" href="/">Get Started</a>
     </nav>
 
     <div class="container">
@@ -56,6 +56,3 @@
     </div>
 </body>
 </html>
-
-
-

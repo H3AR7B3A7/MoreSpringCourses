@@ -8,8 +8,12 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -22,6 +26,9 @@ public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Autowired
     private ConferenceUserDetailsContextMapper ctxMapper;
+    
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
@@ -30,15 +37,39 @@ public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/anonymous*").anonymous()
                 .antMatchers("/login*").permitAll()
-                .antMatchers("/assets/css/**", "/assets/js/**", "/images/**").permitAll()
+                .antMatchers("/assets/css/**", "/assets/js/**", "/images/**", "/webjars/**").permitAll()
                 .antMatchers("/index*").permitAll()
                 .anyRequest().authenticated()
+                
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/", true);
+                .failureUrl("/login?error=true")
+                .permitAll()
+                .defaultSuccessUrl("/", true)
+        
+                .and()
+                .rememberMe() // I SEE NO DIFFERENCE ?!?
+                .userDetailsService(userDetailsService) // WITHOUT THIS I GET WHITELABEL AFTER APP REBOOT
+                .tokenRepository(persistentTokenRepository())
 
+                .and()
+                .logout()
+                .logoutSuccessUrl("/login?logout=true")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/perform_logout", "GET"))
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .permitAll()
+                //.logoutUrl("logout")
+                ;
+    }
+    
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
+        tokenRepositoryImpl.setDataSource(dataSource);
+        return tokenRepositoryImpl;
     }
 
     @Override

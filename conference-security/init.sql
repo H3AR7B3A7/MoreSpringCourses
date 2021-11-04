@@ -14,14 +14,24 @@ CREATE TABLE authorities (
 CREATE UNIQUE INDEX ix_auth_username on authorities (username,authority);
 
 INSERT INTO users (username, password, enabled)
-VALUES('user','$2a$10$PwLlfto2SjmfEqruxwQ3AON3PppXx/KzPldGY8Hm9DMwTy5JY2zr6',1);
+VALUES('Steven','$2a$10$PwLlfto2SjmfEqruxwQ3AON3PppXx/KzPldGY8Hm9DMwTy5JY2zr6',1);
 
 INSERT INTO authorities (username, authority)
-VALUES('user', 'ROLE_USER');
+VALUES('Steven', 'ROLE_USER');
 
 COMMIT;
 
 ALTER TABLE users
 ADD nickname VARCHAR(50);
+
+COMMIT;
+
+CREATE TABLE persistent_logins(
+    username VARCHAR(50) NOT NULL,
+    series VARCHAR(64) PRIMARY KEY,
+    token VARCHAR(64) NOT NULL,
+    last_used TIMESTAMP NOT NULL,
+    FOREIGN KEY (username) REFERENCES users(username)
+);
 
 COMMIT;
