@@ -39,11 +39,23 @@ public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
+//        auth
+//                .inMemoryAuthentication()
 //                .withUser("user")
 //                .password(passwordEncoder().encode("pass"))
 //                .roles("USER");
-        auth.jdbcAuthentication().dataSource(dataSource);
+//        auth
+//                .jdbcAuthentication().dataSource(dataSource);
+        auth
+                .ldapAuthentication()
+                .userDnPatterns("uid={0},ou=people")
+                .groupSearchBase("ou=groups")
+                .contextSource()
+                .url("ldap://localhost:8389/dc=mydomain,dc=com")
+                .and()
+                .passwordCompare()
+                .passwordEncoder(passwordEncoder())
+                .passwordAttribute("userPassword");
     }
 
     @Bean
