@@ -23,10 +23,10 @@ public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
-    
+
     @Autowired
     private ConferenceUserDetailsContextMapper ctxMapper;
-    
+
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -37,6 +37,7 @@ public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/anonymous*").anonymous()
                 .antMatchers("/login*").permitAll()
+                .antMatchers("/account*").permitAll()
                 .antMatchers("/assets/css/**", "/assets/js/**", "/images/**", "/webjars/**").permitAll()
                 .antMatchers("/index*").permitAll()
                 .anyRequest().authenticated()
@@ -48,7 +49,7 @@ public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login?error=true")
                 .permitAll()
                 .defaultSuccessUrl("/", true)
-        
+
                 .and()
                 .rememberMe() // I SEE NO DIFFERENCE ?!?
                 .userDetailsService(userDetailsService) // WITHOUT THIS I GET WHITELABEL AFTER APP REBOOT
@@ -61,10 +62,10 @@ public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .permitAll()
-                //.logoutUrl("logout")
-                ;
+        //.logoutUrl("logout")
+        ;
     }
-    
+
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {
         JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
@@ -79,25 +80,26 @@ public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .withUser("user")
 //                .password(passwordEncoder().encode("pass"))
 //                .roles("USER");
-//        auth
-//                .jdbcAuthentication().dataSource(dataSource);
         auth
-                .ldapAuthentication()
-                .userDnPatterns("uid={0},ou=people")
-                .groupSearchBase("ou=groups")
-                .contextSource()
-                .url("ldap://localhost:8389/dc=mydomain,dc=com")
-                .and()
-                .passwordCompare()
-                .passwordEncoder(passwordEncoder())
-                .passwordAttribute("userPassword")
-                .and()
-                .userDetailsContextMapper(ctxMapper);
+                .jdbcAuthentication().dataSource(dataSource)
+                .passwordEncoder(passwordEncoder());
+//        auth
+//                .ldapAuthentication()
+//                .userDnPatterns("uid={0},ou=people")
+//                .groupSearchBase("ou=groups")
+//                .contextSource()
+//                .url("ldap://localhost:8389/dc=mydomain,dc=com")
+//                .and()
+//                .passwordCompare()
+//                .passwordEncoder(passwordEncoder())
+//                .passwordAttribute("userPassword")
+//                .and()
+//                .userDetailsContextMapper(ctxMapper);
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
+
 }

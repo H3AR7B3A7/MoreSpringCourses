@@ -35,3 +35,23 @@ CREATE TABLE persistent_logins(
 );
 
 COMMIT;
+
+CREATE TABLE accounts(
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    PRIMARY KEY (username)
+);
+
+COMMIT;
+
+CREATE TABLE verification_tokens (
+    username VARCHAR(50) NOT NULL,
+    token VARCHAR(100) NOT NULL,
+    expiry_date DATETIME NOT NULL,
+    PRIMARY KEY (username, token)
+);
+
+COMMIT;
