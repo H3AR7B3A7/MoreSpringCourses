@@ -21,8 +21,10 @@ public class AccountRepositoryImpl implements AccountRepository {
     @Override
     public Account create(Account account) {
         JdbcTemplate template = new JdbcTemplate(dataSource);
-        template.update("INSERT INTO accounts (username, password, email, firstname, lastname) VALUES " +
-                        "(?,?,?,?,?)",
+        String sql = 
+                "INSERT INTO accounts (username, password, email, firstname, lastname) " +
+                "VALUES (?,?,?,?,?)";
+        template.update(sql,
                 account.getUsername(),
                 account.getPassword(),
                 account.getEmail(),
@@ -35,8 +37,11 @@ public class AccountRepositoryImpl implements AccountRepository {
     @Override
     public void saveToken(VerificationToken verificationToken) {
         JdbcTemplate template = new JdbcTemplate(dataSource);
-        template.update("INSERT INTO verification_tokens (username , token, expiry_date) VALUES " +
-                        "(?,?,?)", verificationToken.getUsername(),
+        String sql =
+                "INSERT INTO verification_tokens (username , token, expiry_date) " +
+                "VALUES (?,?,?)";
+        template.update(sql,
+                verificationToken.getUsername(),
                 verificationToken.getToken(),
                 verificationToken.calculateExpiryDate(VerificationToken.EXPIRATION));
 
@@ -45,7 +50,8 @@ public class AccountRepositoryImpl implements AccountRepository {
     @Override
     public VerificationToken findByToken(String token) {
         JdbcTemplate template = new JdbcTemplate(dataSource);
-        return template.queryForObject("select username, token, expiry_date from verification_tokens where token = ?",
+        String sql = "SELECT username, token, expiry_date FROM verification_tokens WHERE token = ?";
+        return template.queryForObject(sql,
                 (resultSet, i) -> {
                     VerificationToken rsToken = new VerificationToken();
                     rsToken.setUsername(resultSet.getString("username"));
@@ -59,36 +65,38 @@ public class AccountRepositoryImpl implements AccountRepository {
     @Override
     public Account findByUsername(String username) {
         JdbcTemplate template = new JdbcTemplate(dataSource);
-        Account account =
-                template.queryForObject("select username, firstname, lastname, " +
-                                "password from accounts where username = ?",
-                        (resultSet, i) -> {
-                            Account account1 = new Account();
-                            account1.setUsername(resultSet.getString("username"));
-                            account1.setFirstName(resultSet.getString("firstname"));
-                            account1.setLastName(resultSet.getString("lastname"));
-                            account1.setPassword(resultSet.getString("password"));
-                            return account1;
-                        },
-                        username);
-        return account;
+        String sql =
+                "SELECT username, firstname, lastname, password FROM accounts WHERE username = ?";
+        return template.queryForObject(sql,
+                (resultSet, i) -> {
+                    Account account1 = new Account();
+                    account1.setUsername(resultSet.getString("username"));
+                    account1.setFirstName(resultSet.getString("firstname"));
+                    account1.setLastName(resultSet.getString("lastname"));
+                    account1.setPassword(resultSet.getString("password"));
+                    return account1;
+                },
+                username);
     }
 
     @Override
     public void createUserDetails(ConferenceUserDetails userDetails) {
         JdbcTemplate template = new JdbcTemplate(dataSource);
-        template.update("INSERT INTO users (username , password, enabled) VALUES " +
-                        "(?,?,?)", userDetails.getUsername(),
+        String sql=
+                "INSERT INTO users (username , password, enabled) " +
+                "VALUES (?,?,?)";
+        template.update(sql, 
+                userDetails.getUsername(),
                 userDetails.getPassword(),
                 1);
-
     }
 
     @Override
     public void createAuthorities(ConferenceUserDetails userDetails) {
         JdbcTemplate template = new JdbcTemplate(dataSource);
+        String sql = "INSERT INTO authorities(username, authority) VALUES (?, ?)";
         for (GrantedAuthority grantedAuthority : userDetails.getAuthorities()) {
-            template.update("INSERT INTO authorities(username, authority) VALUES (?, ?)",
+            template.update(sql,
                     userDetails.getUsername(),
                     grantedAuthority.getAuthority());
         }
@@ -97,12 +105,14 @@ public class AccountRepositoryImpl implements AccountRepository {
     @Override
     public void delete(Account account) {
         JdbcTemplate template = new JdbcTemplate(dataSource);
-        template.update("DELETE FROM accounts where username = ?", account.getUsername());
+        String sql = "DELETE FROM accounts WHERE username = ?";
+        template.update(sql, account.getUsername());
     }
 
     @Override
     public void deleteToken(String token) {
         JdbcTemplate template = new JdbcTemplate(dataSource);
-        template.update("DELETE FROM verification_tokens where token = ?", token);
+        String sql = "DELETE FROM verification_tokens WHERE token = ?";
+        template.update(sql, token);
     }
 }
