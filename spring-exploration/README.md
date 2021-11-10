@@ -29,3 +29,15 @@ Minimal beans:
 - classpath:
 - file:
 - http:
+
+## Annotations
+
+- @Bean
+- @ComponentScan
+- @PropertySource
+- @Value
+- @Component
+  - @Configuration
+  - @Service
+  - @Repository
+- @Autowired
