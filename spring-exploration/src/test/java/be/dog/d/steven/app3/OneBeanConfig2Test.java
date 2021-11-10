@@ -1,5 +1,6 @@
 package be.dog.d.steven.app3;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
@@ -17,5 +18,6 @@ class OneBeanConfig2Test {
     void testOneBeanConfig() {
         MyComponent beanOne = ctx.getBean(MyComponent.class);
         MyComponent beanTwo = ctx.getBean(MyComponent.class);
+        Assertions.assertEquals(beanOne, beanTwo);
     }
 }
