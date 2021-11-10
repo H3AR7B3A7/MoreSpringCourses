@@ -2,6 +2,8 @@
 
 ## Core
 
+- **Pivotal Certified Professional**, a book by Iuliana Cosmina
+  - [Spring Exploration](spring-exploration/README.md)
 - **Spring Fundamentals**, a Pluralsight course by Bryan Hansen
   - [Java Config](conference-java/README.md)
   - [XML Config](conference-xml/README.md)
