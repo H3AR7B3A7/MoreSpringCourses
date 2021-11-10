@@ -41,3 +41,9 @@ Minimal beans:
   - @Service
   - @Repository
 - @Autowired
+
+## Environment
+
+Interface representing the environment in which the current application is running.
+Models two key aspects of the application environment: profiles and properties.
+Methods related to property access are exposed via the PropertyResolver superinterface.
