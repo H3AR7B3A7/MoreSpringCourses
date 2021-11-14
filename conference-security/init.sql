@@ -55,3 +55,13 @@ CREATE TABLE verification_tokens (
 );
 
 COMMIT;
+
+CREATE TABLE reset_tokens (
+    email VARCHAR(100) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    token VARCHAR(100) NOT NULL,
+    expiry_date DATETIME NOT NULL,
+    PRIMARY KEY (email, token)
+);
+
+COMMIT;

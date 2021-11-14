@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.UUID;
 
 @Component
-public class AccountListener implements ApplicationListener<OnCreateAccountEvent> {
+public class AccountListener implements ApplicationListener<CreateAccountEvent> {
 
     private static final String SERVER_URL = "http://localhost:8080/";
 
@@ -25,18 +25,19 @@ public class AccountListener implements ApplicationListener<OnCreateAccountEvent
     }
 
     @Override
-    public void onApplicationEvent(OnCreateAccountEvent onCreateAccountEvent) {
+    public void onApplicationEvent(CreateAccountEvent createAccountEvent) {
         try {
-            confirmCreateAccount(onCreateAccountEvent);
+            confirmCreateAccount(createAccountEvent);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
     }
 
-    private void confirmCreateAccount(OnCreateAccountEvent onCreateAccountEvent) throws MessagingException {
-        Account account = onCreateAccountEvent.getAccount();
+    private void confirmCreateAccount(CreateAccountEvent createAccountEvent) throws MessagingException {
+        Account account = createAccountEvent.getAccount();
         String token = UUID.randomUUID().toString();
         accountService.createVerificationToken(account, token);
+        
         String recipientAddress = account.getEmail();
         String subject = "Registration Confirmation";
         String confirmationUrl = "accountConfirm?token=" + token;
