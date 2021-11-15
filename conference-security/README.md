@@ -176,3 +176,28 @@ Here is an [Example LDAP Server Configuration](src/main/resources/test-server.ld
  		  .userDetailsContextMapper(ctxMapper);
   }
   ```
+
+## Securing Methods in Spring Security
+### Enabling Annotations
+
+- @EnableGlobalMethodSecurity:
+```java
+@Configuration  
+@EnableWebSecurity  
+@EnableGlobalMethodSecurity(  
+ prePostEnabled = true,  
+ securedEnabled = true,  
+ jsr250Enabled = true)  
+public class ConferenceSecurityConfig extends WebSecurityConfigurerAdapter {
+	// ...
+}
+```
+
+- @Secured
+```java
+@PostMapping("registration")
+@Secured("ROLE_ADMIN")
+public String addRegistration(@Valid @ModelAttribute("registration") Registration registration) {
+	// ...
+}
+```
