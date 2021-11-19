@@ -13,8 +13,8 @@ spring:
       client:
         registration:
           facebook:
-            client-id: 
-            client-secret: 
-          google:
-            client-id: 
-            client-secret: 
+            client-id: ${FACEBOOK_CLIENT_ID}
+            client-secret: ${FACEBOOK_CLIENT_SECRET}
+#          google:
+#            client-id: ${GOOGLE_CLIENT_ID}
+#            client-secret: ${GOOGLE_CLIENT_SECRET}

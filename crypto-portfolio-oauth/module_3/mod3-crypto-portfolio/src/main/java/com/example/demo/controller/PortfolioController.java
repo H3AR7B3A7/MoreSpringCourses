@@ -11,4 +11,8 @@ public class PortfolioController {
 		return "portfolio";
 	}
 	
+	@GetMapping
+	public String portfolio2() {
+        return "redirect:/portfolio";
+    }
 }
