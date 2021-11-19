@@ -57,7 +57,8 @@
   - [Crypto Portfolio](crypto-portfolio/README.md)
 - **Authenticating Users with Spring Security**, a PluralSight course by Bryan Hansen
   - [Conference App](conference-security/README.md)
-
+- **Using Spring Security OAuth2 Login**, a PluralSight course by Wojciech Lesniak
+  - [Crypto Portfolio](crypto-portfolio-oauth/README.md)
 
 ## DDD & EDD
 
