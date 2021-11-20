@@ -80,6 +80,7 @@ Spring Security adds a layer of filters in the servlet container before the Disp
 - OAuth2LoginAuthenticationFilter
 - ...
 
+*We can see all the filter chains configured by Spring by setting a breakpoint in the doFilter() method in FilterChainProxy.*
 *These will create an Authentication object.*
 
 **Authentication objects**:

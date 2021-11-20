@@ -74,6 +74,8 @@ Return:
 {"name":"Your Name","id":"1234567891234567"}
 ```
 
+*We can get the token from the authenticationResult in OAuth2AuthorizationCodeAuthenticationProvider.*
+
 ## OpenID Connect
 
 A standard of authentication built on top of OAuth 2.0. It consolidates best practices in a common specification
