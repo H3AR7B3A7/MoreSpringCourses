@@ -35,8 +35,7 @@ Only for testing purposes:
 In production application:
 - Enter valid redirect URI
 
-## Properties
-
+Application Properties:
 ```yaml
 spring:
   security:
@@ -80,6 +79,37 @@ Return:
 
 A standard of authentication built on top of OAuth 2.0. It consolidates best practices in a common specification
 and creates consistency across all OpenID Connect certified providers, to make life easier for developers.
+
+- Provides an identity layer on top of OAuth 2.0 protocol.
+- Clients can verify the identity of an end-user based on the authentication performed by an authorization server.
+- Gives clients access to basic profile information of the end-user.
+
+## Google Configuration
+
+- Register with [Google developer pages](https://developers.google.com/).
+- Go to [Credentials](https://console.developers.google.com/apis/credentials).
+- Create credentials
+- Oauth Client ID
+- Provided URI
+  - http://localhost:8080, https://localhost:8443
+- Provide Redirect URI
+  - http://localhost:8080/login/oauth2/code/google
+
+Application Properties:
+```yaml
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+```
+
+## ID Token
+
+[Open ID Source](https://openid.net/specs/openid-connect-core-1_0.html#IDToken) on the ID Token.
 
 
 ---
