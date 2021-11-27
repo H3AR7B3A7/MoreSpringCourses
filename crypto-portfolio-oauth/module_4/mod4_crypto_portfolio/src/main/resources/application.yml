@@ -6,20 +6,26 @@ server:
 #    key-store-type: PKCS12
 #    key-alias: tomcat
 spring:
-  main:    allow-bean-definition-overriding: true
+  data:
+    mongodb:
+      auto-index-creation: true
+  main:
+    allow-bean-definition-overriding: true
   security:
     oauth2:
       client:
         registration:
           facebook:
-            client-id: 
-            client-secret: 
-            scope:            - public_profile
+            client-id: ${FACEBOOK_CLIENT_ID}
+            client-secret: ${FACEBOOK_CLIENT_SECRET}
+            scope:
+            - public_profile
             - email
-            - user_friends
+            - user_friends
+
           google:
-            client-id:     
-            client-secret: 
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
 logging:
   level:
     root: INFO
