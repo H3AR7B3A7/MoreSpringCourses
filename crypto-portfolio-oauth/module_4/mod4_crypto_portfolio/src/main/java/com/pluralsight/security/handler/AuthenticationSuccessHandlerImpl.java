@@ -1,26 +1,24 @@
 package com.pluralsight.security.handler;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.pluralsight.security.authn.CryptoPrincipal;
+import com.pluralsight.security.model.UserRegistrationRequest;
+import com.pluralsight.security.service.PortfolioQueryService;
+import com.pluralsight.security.service.UserRegistrationService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import com.pluralsight.security.authn.CryptoPrincipal;
-import com.pluralsight.security.model.UserRegistrationRequest;
-import com.pluralsight.security.service.PortfolioQueryService;
-import com.pluralsight.security.service.UserRegistrationService;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Component
 public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler {
 
-	private PortfolioQueryService portfolioQueryService;
-	private UserRegistrationService userRegistrationService;
+	private final PortfolioQueryService portfolioQueryService;
+	private final UserRegistrationService userRegistrationService;
 
 	public AuthenticationSuccessHandlerImpl(PortfolioQueryService portfolioQueryService,
 			UserRegistrationService userRegistrationService) {
