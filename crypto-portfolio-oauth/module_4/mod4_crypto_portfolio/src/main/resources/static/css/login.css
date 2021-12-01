@@ -53,7 +53,9 @@
 .login-title
 {
     color: #555;
-    font-size: 18px;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    font-size: 30px;
     font-weight: 400;
     display: block;
 }
