@@ -1,0 +1,16 @@
+rootProject.name = 'authorization-server'
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            version('spring', '2.7.3')
+            version('depManagement', '1.0.13.RELEASE')
+            version('authServer', '0.3.1')
+
+            plugin('springboot', 'org.springframework.boot').versionRef('spring')
+            plugin('depManagement', 'io.spring.dependency-management').versionRef('depManagement')
+
+            library('authServer', 'org.springframework.security', 'spring-security-oauth2-authorization-server').versionRef('authServer')
+        }
+    }
+}
