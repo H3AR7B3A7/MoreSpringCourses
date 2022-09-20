@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="database" />
+        <module name="driven-adapter" />
+        <module name="application" />
+        <module name="service" />
+        <module name="driving-adapter" />
+        <module name="domain" />
+        <module name="model" />
+        <module name="events" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="application" options="-parameters" />
+      <module name="database" options="-parameters" />
+      <module name="domain" options="-parameters" />
+      <module name="driven-adapter" options="-parameters" />
+      <module name="driving-adapter" options="-parameters" />
+      <module name="events" options="-parameters" />
+      <module name="model" options="-parameters" />
+      <module name="service" options="-parameters" />
+    </option>
+  </component>
+</project>
