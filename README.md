@@ -59,6 +59,9 @@
   - [Conference App](conference-security/README.md)
 - **Using Spring Security OAuth2 Login**, a PluralSight course by Wojciech Lesniak
   - [Crypto Portfolio](crypto-portfolio-oauth/README.md)
+- **Spring Security OAuth Authorization Server**, a Baeldung article
+  - [Authorization Server](authorization-servers/spring-authorization-server/authorization-server/README.md)
+
 
 ## DDD & EDD
 
