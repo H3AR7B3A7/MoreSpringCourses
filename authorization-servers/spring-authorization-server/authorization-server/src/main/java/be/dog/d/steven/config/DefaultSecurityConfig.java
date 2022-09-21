@@ -1,4 +1,4 @@
-package be.dog.d.steven.authorizationserver;
+package be.dog.d.steven.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,19 +17,19 @@ public class DefaultSecurityConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests(authorizeRequests ->
-                        authorizeRequests.anyRequest().authenticated()
-                )
-                .formLogin(withDefaults());
+          authorizeRequests.anyRequest().authenticated()
+        )
+          .formLogin(withDefaults());
         return http.build();
     }
 
     @Bean
     UserDetailsService users() {
         UserDetails user = User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("password")
-                .roles("ADMIN")
-                .build();
+          .username("admin")
+          .password("pass")
+          .roles("USER")
+          .build();
         return new InMemoryUserDetailsManager(user);
     }
 }
